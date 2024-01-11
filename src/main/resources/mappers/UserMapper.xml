@@ -22,12 +22,4 @@
             phone_number = #{phoneNumber}
     </insert>
 
-    <select id="selUserInfo">
-        SELECT A.nm, COUNT(
-        FROM t_user A
-        JOIN t_order B
-        ON A.iuser = B.iuser
-        WHERE A.iuser = #{loginedIuser}
-    </select>
-
 </mapper>
