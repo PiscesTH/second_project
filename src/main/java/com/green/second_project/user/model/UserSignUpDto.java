@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Schema(title = "회원가입 시 필요한 고객 요청 데이터")
-public class UserSigninDto {
+public class UserSignUpDto {
     @JsonIgnore
     private int iuser;
     private String uid;

@@ -9,8 +9,8 @@ import java.util.List;
 public class UserSelMyInfoVo {
     private String nm;
     private int beforeDeposit;
-    private int beforeProgress;
-    private int inProgress;
-    private int completeProgress;
+    private int preparation;
+    private int shipping;
+    private int completed;
     private List<ProductSelWishListVo> myWishList;
 }

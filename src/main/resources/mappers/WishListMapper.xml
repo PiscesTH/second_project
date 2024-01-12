@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.green.second_project.product.WishListMapper">
+<mapper namespace="com.green.second_project.product.ProductWishListMapper">
     <select id="selWishList">
         SELECT A.iproduct, C.product_nm, C.price, C.new_fl,
-        C.rc_fl, C.pop_fl, COUNT(D.ireview) AS reviewCnt
+            C.rc_fl, C.pop_fl, COUNT(D.ireview) AS reviewCnt
         FROM t_wish_list A
         JOIN t_user B
         ON A.iuser = B.iuser

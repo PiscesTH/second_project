@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface WishListMapper {
+public interface ProductWishListMapper {
     List<ProductSelWishListVo> selWishList(int iuser);
 }

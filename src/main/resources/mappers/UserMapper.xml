@@ -25,9 +25,9 @@
     <insert id="selMyInfo">
         SELECT A.nm,
         COUNT(if( B.process_state = 1, B.process_state, null )) AS 'beforeDeposit',
-        COUNT(if( B.process_state = 2, B.process_state, null )) AS 'beforeProgress',
-        COUNT(if( B.process_state = 3, B.process_state, null )) AS 'inProgress',
-        COUNT(if( B.process_state = 4, B.process_state, null )) AS 'completeProgress'
+        COUNT(if( B.process_state = 2, B.process_state, null )) AS 'preparation',
+        COUNT(if( B.process_state = 3, B.process_state, null )) AS 'shipping',
+        COUNT(if( B.process_state = 4, B.process_state, null )) AS 'completed'
         FROM t_user A
         LEFT JOIN t_order B
         ON A.iuser = B.iuser
