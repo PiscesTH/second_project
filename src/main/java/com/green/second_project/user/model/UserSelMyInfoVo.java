@@ -12,5 +12,5 @@ public class UserSelMyInfoVo {
     private int beforeProgress;
     private int inProgress;
     private int completeProgress;
-    private List<ProductSelWishList> myReviews;
+    private List<ProductSelWishList> myWishList;
 }
