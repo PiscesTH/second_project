@@ -1,6 +1,6 @@
 package com.green.second_project.user.model;
 
-import com.green.second_project.product.model.ProductSelWishList;
+import com.green.second_project.product.model.ProductSelWishListVo;
 import lombok.Data;
 
 import java.util.List;
@@ -12,5 +12,5 @@ public class UserSelMyInfoVo {
     private int beforeProgress;
     private int inProgress;
     private int completeProgress;
-    private List<ProductSelWishList> myWishList;
+    private List<ProductSelWishListVo> myWishList;
 }

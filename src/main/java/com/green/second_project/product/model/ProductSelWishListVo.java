@@ -3,7 +3,7 @@ package com.green.second_project.product.model;
 import lombok.Data;
 
 @Data
-public class ProductSelWishList {
+public class ProductSelWishListVo {
     private int iproduct;
     private String productNm;
     private String price;

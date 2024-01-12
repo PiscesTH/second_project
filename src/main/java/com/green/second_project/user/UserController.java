@@ -1,6 +1,7 @@
 package com.green.second_project.user;
 
 import com.green.second_project.common.ResVo;
+import com.green.second_project.user.model.UserSelMyInfoVo;
 import com.green.second_project.user.model.UserSigninDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,5 +17,10 @@ public class UserController {
     @PostMapping
     public ResVo postSignin(@RequestBody UserSigninDto dto){
         return service.postSignin(dto);
+    }
+
+    @GetMapping("/my-page")
+    public UserSelMyInfoVo getMyInfo() {
+        return service.getMyInfo();
     }
 }
