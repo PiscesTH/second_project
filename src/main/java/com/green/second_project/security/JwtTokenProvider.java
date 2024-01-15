@@ -58,7 +58,7 @@ public class JwtTokenProvider  {
         }
     }
 
-    private Claims getAllClaims(String token) { //Claims : key와 value 저장 가능
+    private Claims getAllClaims(String token) {
         return Jwts
                 .parser()
                 .verifyWith(secretKeySpec)

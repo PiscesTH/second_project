@@ -7,6 +7,7 @@ import com.green.second_project.user.model.UserSelMyInfoVo;
 import com.green.second_project.user.model.UserSignUpDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +18,11 @@ import java.util.List;
 public class UserService {
     private final UserMapper userMapper;
     private final ProductWishListMapper wishListMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public ResVo postSignIn(UserSignUpDto dto){
+    public ResVo postSignUp(UserSignUpDto dto){
+        String hashedUpw = passwordEncoder.encode(dto.getUpw());
+        dto.setUpw(hashedUpw);
         int insUserResult = userMapper.insUser(dto);
         int insAddressResult = userMapper.insUserAddress(dto);
         return new ResVo(dto.getIuser());
