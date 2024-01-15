@@ -3,9 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.second_project.user.UserAddressMapper">
+    <insert id="insUserAddress">
+        INSERT INTO t_address
+        SET iuser = #{iuser},
+        nm = #{nm},
+        zip_code = #{zipCode},
+        address = #{address},
+        address_detail = #{addressDetail},
+        phone_number = #{phoneNumber}
+    </insert>
+
     <select id="selUserAddress">
         SELECT zip_code, address, address_detail
         FROM t_address
         WHERE iuser = #{iuser}
     </select>
+
+    <update id="updUserAddress">
+        UPDATE t_Address
+        SET zip_code = #{zipCode},
+            address = #{address},
+            address_detail = #{address_datail}
+        WHERE iaddress = #{iaddress} AND iuser = #{iuser}
+    </update>
+
+    <delete id="delUserAddress">
+        DELETE FROM t_address
+        WHERE (iaddress, iuser) = (#{iaddress), #{iuser})
+    </delete>
 </mapper>

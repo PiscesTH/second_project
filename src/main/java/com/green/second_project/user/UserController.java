@@ -36,8 +36,5 @@ public class UserController {
         return service.postCheckUpw(dto);
     }
 
-    @GetMapping("/address")
-    public List<UserSelAddressVo> getUserAddress() {
-        return service.getUserAddress();
-    }
+
 }

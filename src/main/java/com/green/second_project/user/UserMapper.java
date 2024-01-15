@@ -8,7 +8,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     int insUser(UserSignUpDto dto);
-    int insUserAddress(UserSignUpDto dto);
     UserSelMyInfoVo selMyInfo(int iuser);
     UserSignInProcDto selSignInInfoByUid(String uid);
     String selUpwByIuser(int iuser);

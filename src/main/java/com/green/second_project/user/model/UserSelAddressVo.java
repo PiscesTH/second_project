@@ -1,9 +1,9 @@
 package com.green.second_project.user.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
+import lombok.Getter;
 
-@Setter
+@Getter
 @AllArgsConstructor
 public class UserSelAddressVo {
     private String zipCode;

@@ -12,16 +12,6 @@
             email = #{email}
     </insert>
 
-    <insert id="insUserAddress">
-        INSERT INTO t_address
-        SET iuser = #{iuser},
-            nm = #{nm},
-            zip_code = #{zipCode},
-            address = #{address},
-            address_detail = #{addressDetail},
-            phone_number = #{phoneNumber}
-    </insert>
-
     <select id="selMyInfo">
         SELECT A.nm,
         COUNT(if( B.process_state = 1, B.process_state, null )) AS 'beforeDeposit',

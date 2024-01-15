@@ -5,4 +5,8 @@ public class Const {
     public static final int UPW_NOT_MATCHED = 2;
     public static final int UID_NOT_EXIST = 3;
 
+    public static final int FAIL = 0;
+    public static final int SUCCESS = 1;
+
+
 }
