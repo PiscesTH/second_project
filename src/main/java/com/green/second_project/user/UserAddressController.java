@@ -1,6 +1,7 @@
 package com.green.second_project.user;
 
 import com.green.second_project.common.ResVo;
+import com.green.second_project.user.model.UserDelAddressDto;
 import com.green.second_project.user.model.UserInsAddressDto;
 import com.green.second_project.user.model.UserSelAddressVo;
 import com.green.second_project.user.model.UserUpdAddressDto;
@@ -29,5 +30,9 @@ public class UserAddressController {
     @PostMapping
     public ResVo postUserAddress(@RequestBody UserInsAddressDto dto){
         return service.postUserAddress(dto);
+    }
+    @DeleteMapping
+    public ResVo delUserAddress(@RequestBody UserDelAddressDto dto) {
+        return service.delUserAddress(dto);
     }
 }

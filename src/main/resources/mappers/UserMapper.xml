@@ -36,6 +36,10 @@
         WHERE iuser = #{iuser}
     </select>
 
-
+    <update id="delUser">
+        UPDATE t_user
+        SET unregister_fl = 1
+        WHERE iuser = #{iuser}
+    </update>
 
 </mapper>

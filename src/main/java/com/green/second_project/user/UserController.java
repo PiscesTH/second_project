@@ -36,5 +36,8 @@ public class UserController {
         return service.postCheckUpw(dto);
     }
 
-
+    @DeleteMapping("/modify")
+    public ResVo deleteUnregister() {
+        return service.deleteUnregister();
+    }
 }

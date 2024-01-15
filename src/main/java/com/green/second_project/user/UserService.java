@@ -35,8 +35,7 @@ public class UserService {
         String hashedUpw = passwordEncoder.encode(dto.getUpw());
         dto.setUpw(hashedUpw);
         int insUserResult = userMapper.insUser(dto);
-        UserInsAddressDto addressDto = UserInsAddressDto.builder()
-                .build();
+        UserInsAddressDto addressDto = new UserInsAddressDto(dto);
         int insAddressResult = addressMapper.insUserAddress(addressDto);
 
         return new ResVo(dto.getIuser());
@@ -102,6 +101,17 @@ public class UserService {
 
     public ResVo postUserAddress(UserInsAddressDto dto) {
         int result = addressMapper.insUserAddress(dto);
+        return new ResVo(result);
+    }
+
+    public ResVo delUserAddress(UserDelAddressDto dto) {
+        int result = addressMapper.delUserAddress(dto);
+        return new ResVo(result);
+    }
+
+    public ResVo deleteUnregister() {
+        int iuser = authenticationFacade.getLoginUserPk();
+        int result = userMapper.delUser(iuser);
         return new ResVo(result);
     }
 }

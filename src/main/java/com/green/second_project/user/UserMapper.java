@@ -11,4 +11,5 @@ public interface UserMapper {
     UserSelMyInfoVo selMyInfo(int iuser);
     UserSignInProcDto selSignInInfoByUid(String uid);
     String selUpwByIuser(int iuser);
+    int delUser(int iuser);
 }
