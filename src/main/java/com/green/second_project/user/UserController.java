@@ -34,7 +34,10 @@ public class UserController {
         return service.postCheckUpw(dto);
     }
 
-    @PutMapping
+    @PutMapping("/modify")
+    public ResVo putUserInfo(@RequestBody UserUpdDto dto) {
+        return service.putUserInfo(dto);
+    }
 
     @DeleteMapping("/modify")
     public ResVo unregister() {

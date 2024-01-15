@@ -125,4 +125,9 @@ public class UserService {
         int result = userMapper.delUser(iuser);
         return new ResVo(result);
     }
+
+    public ResVo putUserInfo(UserUpdDto dto) {
+        dto.setIuser(authenticationFacade.getLoginUserPk());
+        return new ResVo(1);
+    }
 }

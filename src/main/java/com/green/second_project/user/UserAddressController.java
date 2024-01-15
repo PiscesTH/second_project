@@ -17,6 +17,11 @@ import java.util.List;
 @RequestMapping("/api/user/address")
 public class UserAddressController {
     private final UserService service;
+    @PostMapping
+    public ResVo postUserAddress(@RequestBody UserInsAddressDto dto){
+        return service.postUserAddress(dto);
+    }
+
     @GetMapping
     public List<UserSelAddressVo> getUserAddress() {
         return service.getUserAddress();
@@ -27,12 +32,8 @@ public class UserAddressController {
         return service.putUserAddress(dto);
     }
 
-    @PostMapping
-    public ResVo postUserAddress(@RequestBody UserInsAddressDto dto){
-        return service.postUserAddress(dto);
-    }
     @DeleteMapping
-    public ResVo delUserAddress(@RequestBody UserDelAddressDto dto) {
+    public ResVo delUserAddress(UserDelAddressDto dto) {
         return service.delUserAddress(dto);
     }
 }

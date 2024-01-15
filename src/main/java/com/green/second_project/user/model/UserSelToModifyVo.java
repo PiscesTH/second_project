@@ -13,5 +13,5 @@ public class UserSelToModifyVo {
     private String nm;
     private String phoneNumber;
     private String email;
-    private List<UserChildDto> children;
+    private List<UserChildVo> children;
 }

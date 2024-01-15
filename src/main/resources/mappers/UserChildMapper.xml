@@ -17,4 +17,9 @@
         FROM t_user_child
         WHERE iuser = #{iuser}
     </select>
+
+    <delete id="delUserChildren">
+        DELETE FROM t_user_child
+        WHERE iuser = #{iuser}
+    </delete>
 </mapper>
