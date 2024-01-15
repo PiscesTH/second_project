@@ -128,6 +128,11 @@ public class UserService {
 
     public ResVo putUserInfo(UserUpdDto dto) {
         dto.setIuser(authenticationFacade.getLoginUserPk());
+        if (dto.getUpw() != null) {
+            String hashedUpw = passwordEncoder.encode(dto.getUpw());
+            dto.setUpw(hashedUpw);
+        }
+
         return new ResVo(1);
     }
 }
