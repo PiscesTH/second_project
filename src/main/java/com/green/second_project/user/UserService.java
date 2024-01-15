@@ -25,16 +25,23 @@ public class UserService {
     private final UserMapper userMapper;
     private final ProductWishListMapper wishListMapper;
     private final UserAddressMapper addressMapper;
+    private final UserChildMapper childMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AppProperties appProperties;
     private final MyCookieUtils myCookieUtils;
     private final AuthenticationFacade authenticationFacade;
 
-    public ResVo postSignUp(UserSignUpDto dto){
+    public ResVo postSignUp(UserSignUpDto dto) {
         String hashedUpw = passwordEncoder.encode(dto.getUpw());
         dto.setUpw(hashedUpw);
         int insUserResult = userMapper.insUser(dto);
+
+        int insUserChildResult = childMapper.insUserChildren(UserChildProcDto.builder()
+                .iuser(dto.getIuser())
+                .children(dto.getChildren())
+                .build());
+
         UserInsAddressDto addressDto = new UserInsAddressDto(dto);
         int insAddressResult = addressMapper.insUserAddress(addressDto);
 
@@ -56,7 +63,7 @@ public class UserService {
                     .result(Const.UID_NOT_EXIST)
                     .build();
         }
-        if(!passwordEncoder.matches(dto.getUpw(), vo.getUpw())){
+        if (!passwordEncoder.matches(dto.getUpw(), vo.getUpw())) {
             return UserSignInVo.builder()
                     .result(Const.UPW_NOT_MATCHED)
                     .build();
@@ -76,13 +83,17 @@ public class UserService {
                 .build();
     }
 
-    public ResVo postCheckUpw(UserCheckUpwDto dto) {
+    public UserSelToModifyVo postCheckUpw(UserCheckUpwDto dto) {
         int iuser = authenticationFacade.getLoginUserPk();
-        String hashedUpw = userMapper.selUpwByIuser(iuser);
-        if (passwordEncoder.matches(dto.getUpw(), hashedUpw)) {
-            return new ResVo(Const.SIGN_IN_SUCCESS);
+        UserSelToModifyVo vo = userMapper.selUserInfoByIuser(iuser);
+        String hashedUpw = vo.getUpw();
+        if (!passwordEncoder.matches(dto.getUpw(), hashedUpw)) {
+            vo = new UserSelToModifyVo();
+            vo.setResult(Const.UPW_NOT_MATCHED);
+            return vo;
         }
-        return new ResVo(Const.UPW_NOT_MATCHED);
+        vo.setChildren(childMapper.selUserChildren(iuser));
+        return vo;
     }
 
     public List<UserSelAddressVo> getUserAddress() {
@@ -109,7 +120,7 @@ public class UserService {
         return new ResVo(result);
     }
 
-    public ResVo deleteUnregister() {
+    public ResVo unregister() {
         int iuser = authenticationFacade.getLoginUserPk();
         int result = userMapper.delUser(iuser);
         return new ResVo(result);

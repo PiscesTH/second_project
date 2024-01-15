@@ -3,6 +3,8 @@ package com.green.second_project.user.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UserUpdAddressDto {
     @JsonIgnore

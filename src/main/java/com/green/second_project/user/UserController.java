@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -32,12 +30,14 @@ public class UserController {
     }
 
     @PostMapping("/modify")
-    public ResVo postCheckUpw(@RequestBody UserCheckUpwDto dto) {
+    public UserSelToModifyVo postCheckUpw(@RequestBody UserCheckUpwDto dto) {
         return service.postCheckUpw(dto);
     }
 
+    @PutMapping
+
     @DeleteMapping("/modify")
-    public ResVo deleteUnregister() {
-        return service.deleteUnregister();
+    public ResVo unregister() {
+        return service.unregister();
     }
 }

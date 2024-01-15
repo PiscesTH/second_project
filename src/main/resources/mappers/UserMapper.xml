@@ -30,8 +30,8 @@
         WHERE uid = #{uid}
     </select>
 
-    <select id="selUpwByIuser">
-        SELECT upw
+    <select id="selUserInfoByIuser">
+        SELECT upw, nm, phone_number, email
         FROM t_user
         WHERE iuser = #{iuser}
     </select>
