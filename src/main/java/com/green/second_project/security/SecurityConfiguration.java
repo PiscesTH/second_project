@@ -23,7 +23,6 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(author -> author.requestMatchers("/api/user/sign-in",
                                                                         "/api/user/sign-up",
-                                                                        "/api/user/my-page",
                                                                         "/api/user/refresh-token",
                                                                         "/error",
                                                                         "/err",

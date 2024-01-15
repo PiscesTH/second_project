@@ -24,6 +24,7 @@ import java.util.List;
 public class UserService {
     private final UserMapper userMapper;
     private final ProductWishListMapper wishListMapper;
+    private final UserAddressMapper addressMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final AppProperties appProperties;
@@ -80,5 +81,10 @@ public class UserService {
             return new ResVo(Const.SIGN_IN_SUCCESS);
         }
         return new ResVo(Const.UPW_NOT_MATCHED);
+    }
+
+    public List<UserSelAddressVo> getUserAddress() {
+        int iuser = authenticationFacade.getLoginUserPk();
+        return addressMapper.selUserAddress(iuser);
     }
 }

@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -29,8 +31,13 @@ public class UserController {
         return service.getMyInfo();
     }
 
-    @PostMapping("/")
+    @PostMapping("/modify")
     public ResVo postCheckUpw(@RequestBody UserCheckUpwDto dto) {
         return service.postCheckUpw(dto);
+    }
+
+    @GetMapping("/address")
+    public List<UserSelAddressVo> getUserAddress() {
+        return service.getUserAddress();
     }
 }

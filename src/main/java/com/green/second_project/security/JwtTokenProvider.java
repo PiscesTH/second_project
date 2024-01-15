@@ -87,16 +87,19 @@ public class JwtTokenProvider  {
     }
 
     public Authentication getAuthentication(String token) { //userDetails 사용 안하고 테스트 중
-        MyPrincipal myPrincipal = getUserDetailsFromToken(token);
-        return myPrincipal == null ?
-                null : new UsernamePasswordAuthenticationToken(myPrincipal, null);
+        UserDetails userDetails = getUserDetailsFromToken(token);
+        return userDetails == null ?
+                null : new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
-    public MyPrincipal getUserDetailsFromToken(String token) {
+    public UserDetails getUserDetailsFromToken(String token) {
         try {
             Claims claims = getAllClaims(token);
             String json = (String) claims.get("user");
-            return om.readValue(json, MyPrincipal.class);
+            MyPrincipal myPrincipal = om.readValue(json, MyPrincipal.class);
+            return MyUserDetails.builder()
+                    .myPrincipal(myPrincipal)
+                    .build();
         } catch (Exception e) {
             return null;
         }
