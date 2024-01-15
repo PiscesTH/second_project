@@ -9,7 +9,7 @@
         FROM t_wish_list A
         JOIN t_user B
         ON A.iuser = B.iuser
-        AND A.iuser = 1
+        AND A.iuser = #{iuser}
         JOIN t_product C
         ON A.iproduct = C.iproduct
         LEFT JOIN t_review D
