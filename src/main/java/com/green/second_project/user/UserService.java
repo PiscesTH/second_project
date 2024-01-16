@@ -132,7 +132,7 @@ public class UserService {
             String hashedUpw = passwordEncoder.encode(dto.getUpw());
             dto.setUpw(hashedUpw);
         }
-
-        return new ResVo(1);
+        int result = userMapper.updUser(dto);
+        return new ResVo(result);
     }
 }

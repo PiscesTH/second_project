@@ -6,11 +6,11 @@
     <insert id="insUserAddress">
         INSERT INTO t_address
         SET iuser = #{iuser},
-        nm = #{nm},
-        zip_code = #{zipCode},
-        address = #{address},
-        address_detail = #{addressDetail},
-        phone_number = #{phoneNumber}
+            nm = #{nm},
+            zip_code = #{zipCode},
+            address = #{address},
+            address_detail = #{addressDetail},
+            phone_number = #{phoneNumber}
     </insert>
 
     <select id="selUserAddress">
@@ -29,6 +29,6 @@
 
     <delete id="delUserAddress">
         DELETE FROM t_address
-        WHERE (iaddress, iuser) = (#{iaddress), #{iuser})
+        WHERE (iaddress, iuser) = (#{iaddress}), #{iuser})
     </delete>
 </mapper>

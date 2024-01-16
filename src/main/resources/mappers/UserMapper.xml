@@ -42,4 +42,15 @@
         WHERE iuser = #{iuser}
     </update>
 
+    <update id="updUser">
+        UPDATE t_user
+        SET
+        <if test="upw != null and upw != ''">
+            upw = #{upw},
+        </if>
+            nm = #{nm},
+            phoneNumber = #{phoneNumber},
+            email = #{email}
+        WHERE iuser = #{iuser}
+    </update>
 </mapper>

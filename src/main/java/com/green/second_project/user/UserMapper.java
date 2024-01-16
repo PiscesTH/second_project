@@ -10,4 +10,5 @@ public interface UserMapper {
     UserSignInProcDto selSignInInfoByUid(String uid);
     UserSelToModifyVo selUserInfoByIuser(int iuser);
     int delUser(int iuser);
+    int updUser(UserUpdDto dto);
 }
