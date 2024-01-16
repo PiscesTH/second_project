@@ -135,12 +135,12 @@ public class UserService {
             String hashedUpw = passwordEncoder.encode(dto.getUpw());
             dto.setUpw(hashedUpw);
         }
-        int result = userMapper.updUser(dto);
         int delChildResult = childMapper.delUserChildren(dto.getIuser());
         for (UserChildDto child : dto.getChildren()) {
             child.setIuser(dto.getIuser());
             int insChildResult = childMapper.insUserChildren(child);
         }
+        int result = userMapper.updUser(dto);
         return new ResVo(result);
     }
     public List<UserClauseVo> getClause() {
