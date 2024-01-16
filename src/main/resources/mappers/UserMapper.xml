@@ -36,6 +36,12 @@
         WHERE iuser = #{iuser}
     </select>
 
+    <select id="selClause">
+        SELECT iclause, title, contents, required
+        FROM t_signup_clause
+        WHERE iclause IN (1, 2)
+    </select>
+
     <update id="delUser">
         UPDATE t_user
         SET unregister_fl = 1
@@ -49,7 +55,7 @@
             upw = #{upw},
         </if>
             nm = #{nm},
-            phoneNumber = #{phoneNumber},
+            phone_number = #{phoneNumber},
             email = #{email}
         WHERE iuser = #{iuser}
     </update>

@@ -6,11 +6,9 @@
     <insert id="insUserAddress">
         INSERT INTO t_address
         SET iuser = #{iuser},
-            nm = #{nm},
             zip_code = #{zipCode},
             address = #{address},
-            address_detail = #{addressDetail},
-            phone_number = #{phoneNumber}
+            address_detail = #{addressDetail}
     </insert>
 
     <select id="selUserAddress">

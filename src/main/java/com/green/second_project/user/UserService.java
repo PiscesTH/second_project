@@ -93,6 +93,7 @@ public class UserService {
             return vo;
         }
         vo.setChildren(childMapper.selUserChildren(iuser));
+        vo.setResult(Const.SIGN_IN_SUCCESS);
         return vo;
     }
 
@@ -111,11 +112,13 @@ public class UserService {
     }
 
     public ResVo postUserAddress(UserInsAddressDto dto) {
+        dto.setIuser(authenticationFacade.getLoginUserPk());
         int result = addressMapper.insUserAddress(dto);
         return new ResVo(result);
     }
 
     public ResVo delUserAddress(UserDelAddressDto dto) {
+        dto.setIuser(authenticationFacade.getLoginUserPk());
         int result = addressMapper.delUserAddress(dto);
         return new ResVo(result);
     }
@@ -139,5 +142,8 @@ public class UserService {
             int insChildResult = childMapper.insUserChildren(child);
         }
         return new ResVo(result);
+    }
+    public List<UserClauseVo> getClause() {
+        return userMapper.selClause();
     }
 }

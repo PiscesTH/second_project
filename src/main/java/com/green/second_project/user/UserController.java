@@ -7,12 +7,19 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class UserController {
     private final UserService service;
+
+    @GetMapping("/sign-up")
+    public List<UserClauseVo> getClause() {
+        return service.getClause();
+    }
 
     @PostMapping("/sign-up")
     public ResVo postSignUp(@RequestBody UserSignUpDto dto) {
@@ -43,4 +50,7 @@ public class UserController {
     public ResVo unregister() {
         return service.unregister();
     }
+
+
+
 }
