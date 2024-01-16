@@ -7,9 +7,7 @@
         INSERT INTO
         (iuser, gender, ichild_age)
         VALUES
-        <foreach collection="children" item="child" separator=",">
-            (#{iuser}, #{gender}, #{ichild_age})
-        </foreach>
+        (#{iuser}, #{gender}, #{ichild_age})
     </insert>
 
     <select id="selUserChildren">

@@ -37,10 +37,10 @@ public class UserService {
         dto.setUpw(hashedUpw);
         int insUserResult = userMapper.insUser(dto);
 
-        int insUserChildResult = childMapper.insUserChildren(UserChildProcDto.builder()
-                .iuser(dto.getIuser())
-                .children(dto.getChildren())
-                .build());
+        for (UserChildDto child : dto.getChildren()) {
+            child.setIuser(dto.getIuser());
+            int insChildResult = childMapper.insUserChildren(child);
+        }
 
         UserInsAddressDto addressDto = new UserInsAddressDto(dto);
         int insAddressResult = addressMapper.insUserAddress(addressDto);
@@ -133,6 +133,11 @@ public class UserService {
             dto.setUpw(hashedUpw);
         }
         int result = userMapper.updUser(dto);
+        int delChildResult = childMapper.delUserChildren(dto.getIuser());
+        for (UserChildDto child : dto.getChildren()) {
+            child.setIuser(dto.getIuser());
+            int insChildResult = childMapper.insUserChildren(child);
+        }
         return new ResVo(result);
     }
 }
