@@ -43,6 +43,10 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
 	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+	// https://mvnrepository.com/artifact/javax.validation/validation-api
+	//implementation 'javax.validation:validation-api:2.0.1.Final'
+
 }
 
 tasks.named('test') {
