@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/user/address")
 public class UserAddressController {
     private final UserService service;
+
     @PostMapping
     public ResVo postUserAddress(@RequestBody UserInsAddressDto dto){
         return service.postUserAddress(dto);

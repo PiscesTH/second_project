@@ -3,6 +3,7 @@ package com.green.second_project.user;
 import com.green.second_project.common.ResVo;
 import com.green.second_project.user.model.*;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public ResVo postSignUp(@RequestBody UserSignUpDto dto) {
+    public ResVo postSignUp(@Valid @RequestBody UserSignUpDto dto) {
         return service.postSignUp(dto);
     }
 

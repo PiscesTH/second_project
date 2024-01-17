@@ -2,6 +2,7 @@ package com.green.second_project.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
 public class UserSignUpDto {
     @JsonIgnore
     private int iuser;
+    @NotBlank
     private String uid;
     private String upw;
     private String nm;
+
     private String zipCode;
     private String address;
     private String addressDetail;
