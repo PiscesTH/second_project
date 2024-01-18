@@ -4,6 +4,8 @@ import com.green.second_project.common.AppProperties;
 import com.green.second_project.common.Const;
 import com.green.second_project.common.MyCookieUtils;
 import com.green.second_project.common.ResVo;
+import com.green.second_project.exception.AuthErrorCode;
+import com.green.second_project.exception.RestApiException;
 import com.green.second_project.product.ProductWishListMapper;
 import com.green.second_project.product.model.ProductSelWishListVo;
 import com.green.second_project.security.AuthenticationFacade;
@@ -33,6 +35,7 @@ public class UserService {
     private final AuthenticationFacade authenticationFacade;
 
     public ResVo postSignUp(UserSignUpDto dto) {
+        dto.getUid();
         String hashedUpw = passwordEncoder.encode(dto.getUpw());
         dto.setUpw(hashedUpw);
         int insUserResult = userMapper.insUser(dto);
@@ -46,6 +49,14 @@ public class UserService {
         int insAddressResult = addressMapper.insUserAddress(addressDto);
 
         return new ResVo(dto.getIuser());
+    }
+
+    public ResVo postCheckUid(UserCheckUidDto dto) {
+        UserSignInProcDto result = userMapper.selSignInInfoByUid(dto.getUid());
+        if (result != null){
+            throw new RestApiException(AuthErrorCode.UID_DUPLICATED);
+        }
+        return new ResVo(0);
     }
 
     public UserSelMyInfoVo getMyInfo() {

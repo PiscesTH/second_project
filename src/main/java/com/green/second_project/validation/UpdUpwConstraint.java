@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ListSizeConstraintValidator.class)
-public @interface ListSizeConstraint {
-    String message() default "사진은 두 장 필요합니다.";
+@Constraint(validatedBy = UpdUpwConstraintValidator.class)
+public @interface UpdUpwConstraint {
+    String message() default "비밀번호는 공백을 제외한 영어와 숫자, 특수문자를 하나 이상 포함한 8~16자리이어야 합니다.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

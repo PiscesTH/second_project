@@ -5,6 +5,7 @@ import com.green.second_project.user.model.UserDelAddressDto;
 import com.green.second_project.user.model.UserInsAddressDto;
 import com.green.second_project.user.model.UserSelAddressVo;
 import com.green.second_project.user.model.UserUpdAddressDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class UserAddressController {
     private final UserService service;
 
     @PostMapping
-    public ResVo postUserAddress(@RequestBody UserInsAddressDto dto){
+    public ResVo postUserAddress(@Valid @RequestBody UserInsAddressDto dto){
         return service.postUserAddress(dto);
     }
 
@@ -29,7 +30,7 @@ public class UserAddressController {
     }
 
     @PutMapping
-    public ResVo putUserAddress(@RequestBody UserUpdAddressDto dto) {
+    public ResVo putUserAddress(@Valid @RequestBody UserUpdAddressDto dto) {
         return service.putUserAddress(dto);
     }
 

@@ -2,10 +2,12 @@ package com.green.second_project.user;
 
 import com.green.second_project.common.ResVo;
 import com.green.second_project.user.model.*;
+import com.green.second_project.validation.ValidationSequence;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +25,18 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public ResVo postSignUp(@Valid @RequestBody UserSignUpDto dto) {
+    public ResVo postSignUp(@Validated(ValidationSequence.class) @RequestBody UserSignUpDto dto) {
         return service.postSignUp(dto);
     }
 
+    @PostMapping("/sign-up/check")
+    public ResVo postCheckUid(@Validated(ValidationSequence.class) @RequestBody UserCheckUidDto dto) {
+        log.info("uid : {}",dto);
+        return service.postCheckUid(dto);
+    }
+
     @PostMapping("/sign-in")
-    public UserSignInVo postSignIn(HttpServletResponse res, @RequestBody UserSignInDto dto) {
+    public UserSignInVo postSignIn(HttpServletResponse res,@Valid @RequestBody UserSignInDto dto) {
         return service.postSignIn(res, dto);
     }
 
@@ -38,12 +46,12 @@ public class UserController {
     }
 
     @PostMapping("/modify")
-    public UserSelToModifyVo postCheckUpw(@RequestBody UserCheckUpwDto dto) {
+    public UserSelToModifyVo postCheckUpw(@Valid @RequestBody UserCheckUpwDto dto) {
         return service.postCheckUpw(dto);
     }
 
     @PutMapping("/modify")
-    public ResVo putUserInfo(@RequestBody UserUpdDto dto) {
+    public ResVo putUserInfo(@Validated(ValidationSequence.class) @RequestBody UserUpdDto dto) {
         return service.putUserInfo(dto);
     }
 
