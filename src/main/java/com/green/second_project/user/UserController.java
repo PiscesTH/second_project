@@ -73,5 +73,4 @@ public class UserController {
     public ResVo postSignout(HttpServletRequest req, HttpServletResponse res) {
         return service.signout(res);
     }
-
 }

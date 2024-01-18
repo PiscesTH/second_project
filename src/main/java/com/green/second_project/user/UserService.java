@@ -5,6 +5,7 @@ import com.green.second_project.common.Const;
 import com.green.second_project.common.MyCookieUtils;
 import com.green.second_project.common.ResVo;
 import com.green.second_project.exception.AuthErrorCode;
+import com.green.second_project.exception.CommonErrorCode;
 import com.green.second_project.exception.RestApiException;
 import com.green.second_project.product.ProductWishListMapper;
 import com.green.second_project.product.model.ProductSelWishListVo;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -109,6 +111,10 @@ public class UserService {
 
     public ResVo putUserAddress(UserUpdAddressDto dto) {
         dto.setIuser(authenticationFacade.getLoginUserPk());
+        List<UserSelAddressVo> vo = addressMapper.selUserAddress(dto.getIuser());
+        if (vo.isEmpty() || vo.size() > 3){
+            throw new RestApiException(AuthErrorCode.INVALID_ADDRESS_SIZE);
+        }
         int result = addressMapper.updUserAddress(dto);
         if (result == 0) {
             return new ResVo(Const.FAIL);
@@ -136,7 +142,7 @@ public class UserService {
 
     public ResVo putUserInfo(UserUpdDto dto) {
         dto.setIuser(authenticationFacade.getLoginUserPk());
-        if (dto.getUpw() != null) {
+        if (StringUtils.hasText(dto.getUpw())) {
             String hashedUpw = passwordEncoder.encode(dto.getUpw());
             dto.setUpw(hashedUpw);
         }

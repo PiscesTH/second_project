@@ -2,6 +2,7 @@ package com.green.second_project.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.green.second_project.common.Const;
+import com.green.second_project.validation.UpdUpwConstraint;
 import com.green.second_project.validation.ValidationGroup;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
@@ -19,10 +20,7 @@ public class UserUpdDto {
     private int iuser;
 
     @Schema(description = "유저 비밀번호", example = "특수문자는 @$!%*?&#~_-를 사용할 수 있습니다.")
-    @NotNull(message = Const.PASSWORD_BLANK_MSG, groups = ValidationGroup.NotNullGroup.class)
-    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@$!%*?&#~_-])[A-Za-z\\d@$!%*?&#.~_-]{8,16}$",
-            message = "비밀번호는 공백을 제외한 영어와 숫자, 특수문자를 하나 이상 포함한 8~16자리이어야 합니다.",
-            groups = ValidationGroup.PatternCheckGroup.class)
+    @UpdUpwConstraint
     private String upw;
 
 
@@ -30,7 +28,7 @@ public class UserUpdDto {
     private String nm;
 
     @NotNull(message = "전화번호를 입력해주세요.", groups = ValidationGroup.NotNullGroup.class)
-    @Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}\n",
+    @Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}",
             message = "올바르지 않은 전화번호 형식입니다.",
             groups = ValidationGroup.PatternCheckGroup.class)
     private String phoneNumber;
