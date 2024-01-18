@@ -43,7 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
             body.put("errorCode", String.valueOf(status.value()));
             body.put("message", fieldError.getDefaultMessage());
-            body.put("error position", fieldError.getField());
+//            body.put("error position", fieldError.getField());
         }
         return new ResponseEntity<>(body, headers, status);
     }

@@ -35,7 +35,10 @@ public class UserService {
     private final AuthenticationFacade authenticationFacade;
 
     public ResVo postSignUp(UserSignUpDto dto) {
-        dto.getUid();
+        UserSignInProcDto procDto = userMapper.selSignInInfoByUid(dto.getUid());
+        if (procDto != null) {
+            throw new RestApiException(AuthErrorCode.DUPLICATED_UID);
+        }
         String hashedUpw = passwordEncoder.encode(dto.getUpw());
         dto.setUpw(hashedUpw);
         int insUserResult = userMapper.insUser(dto);
@@ -53,10 +56,10 @@ public class UserService {
 
     public ResVo postCheckUid(UserCheckUidDto dto) {
         UserSignInProcDto result = userMapper.selSignInInfoByUid(dto.getUid());
-        if (result != null){
-            throw new RestApiException(AuthErrorCode.UID_DUPLICATED);
+        if (result != null) {
+            throw new RestApiException(AuthErrorCode.DUPLICATED_UID);
         }
-        return new ResVo(0);
+        return new ResVo(Const.SUCCESS);
     }
 
     public UserSelMyInfoVo getMyInfo() {
@@ -69,15 +72,8 @@ public class UserService {
 
     public UserSignInVo postSignIn(HttpServletResponse res, UserSignInDto dto) {
         UserSignInProcDto vo = userMapper.selSignInInfoByUid(dto.getUid());
-        if (vo == null) {
-            return UserSignInVo.builder()
-                    .result(Const.UID_NOT_EXIST)
-                    .build();
-        }
-        if (!passwordEncoder.matches(dto.getUpw(), vo.getUpw())) {
-            return UserSignInVo.builder()
-                    .result(Const.UPW_NOT_MATCHED)
-                    .build();
+        if (vo == null || !passwordEncoder.matches(dto.getUpw(), vo.getUpw())) {
+            throw new RestApiException(AuthErrorCode.LOGIN_FAIL);
         }
         MyPrincipal myPrincipal = new MyPrincipal(vo.getIuser());
         String at = jwtTokenProvider.generateAccessToken(myPrincipal);
@@ -99,9 +95,7 @@ public class UserService {
         UserSelToModifyVo vo = userMapper.selUserInfoByIuser(iuser);
         String hashedUpw = vo.getUpw();
         if (!passwordEncoder.matches(dto.getUpw(), hashedUpw)) {
-            vo = new UserSelToModifyVo();
-            vo.setResult(Const.UPW_NOT_MATCHED);
-            return vo;
+            throw new RestApiException(AuthErrorCode.PASSWORD_NOT_MATCHED);
         }
         vo.setChildren(childMapper.selUserChildren(iuser));
         vo.setResult(Const.SIGN_IN_SUCCESS);
@@ -154,7 +148,13 @@ public class UserService {
         int result = userMapper.updUser(dto);
         return new ResVo(result);
     }
+
     public List<UserClauseVo> getClause() {
         return userMapper.selClause();
+    }
+
+    public ResVo signout(HttpServletResponse res) {
+        myCookieUtils.deleteCookie(res, "refreshToken");
+        return new ResVo(Const.SUCCESS);
     }
 }

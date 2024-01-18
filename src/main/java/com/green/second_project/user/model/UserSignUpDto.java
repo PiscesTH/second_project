@@ -46,7 +46,7 @@ public class UserSignUpDto {
     private String addressDetail;
 
     @NotNull(message = "전화번호를 입력해주세요.", groups = ValidationGroup.NotNullGroup.class)
-    @Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}\n",
+    @Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}",
             message = "올바르지 않은 전화번호 형식입니다.")
     private String phoneNumber;
 

@@ -3,6 +3,8 @@ package com.green.second_project.user;
 import com.green.second_project.common.ResVo;
 import com.green.second_project.user.model.*;
 import com.green.second_project.validation.ValidationSequence;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,9 @@ public class UserController {
         return service.postSignUp(dto);
     }
 
+    @Operation(summary = "회원 가입 시 닉네임 중복 확인 기능", description = """
+            중복되는 닉네임 없음 -> result = 1
+            """)
     @PostMapping("/sign-up/check")
     public ResVo postCheckUid(@Validated(ValidationSequence.class) @RequestBody UserCheckUidDto dto) {
         log.info("uid : {}",dto);
@@ -46,6 +51,10 @@ public class UserController {
     }
 
     @PostMapping("/modify")
+    @Operation(summary = "회원 정보 수정 전 비밀번호 확인 기능", description = """
+            비밀번호 일치 -> result = 1<br>
+            비밀번호 불일치 -> error 코드 응답
+            """)
     public UserSelToModifyVo postCheckUpw(@Valid @RequestBody UserCheckUpwDto dto) {
         return service.postCheckUpw(dto);
     }
@@ -60,6 +69,9 @@ public class UserController {
         return service.unregister();
     }
 
-
+    @PostMapping("/signout")
+    public ResVo postSignout(HttpServletRequest req, HttpServletResponse res) {
+        return service.signout(res);
+    }
 
 }

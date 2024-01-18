@@ -2,7 +2,6 @@ package com.green.second_project.user.model;
 
 import com.green.second_project.common.Const;
 import com.green.second_project.validation.ValidationGroup;
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
