@@ -24,19 +24,27 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("status", status.value());
-
-        //Get all errors
-        List<String> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(x -> x.getDefaultMessage())
-                .collect(Collectors.toList());
-
-        body.put("errors", errors);
-        log.warn("MethodArgumentNotValidException", ex);
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                  HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+//        Map<String, Object> body = new LinkedHashMap<>();
+//        body.put("status", status.value());
+//
+//        //Get all errors
+//        List<String> errors = ex.getBindingResult()
+//                .getFieldErrors()
+//                .stream()
+//                .map(x -> x.getDefaultMessage())
+//                .collect(Collectors.toList());
+//
+//        body.put("errors", errors);
+//        log.warn("MethodArgumentNotValidException", ex);
+        Map<String, Object> body = new HashMap<>();
+        BindingResult bindingResult = ex.getBindingResult();
+        for (FieldError fieldError : bindingResult.getFieldErrors()) {
+            body.put("errorCode", String.valueOf(status.value()));
+            body.put("message", fieldError.getDefaultMessage());
+            body.put("error position", fieldError.getField());
+        }
         return new ResponseEntity<>(body, headers, status);
     }
 
