@@ -26,6 +26,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+/*
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", status.value());
 
@@ -46,6 +47,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 ////            body.put("error position", fieldError.getField());
 //        }
         return new ResponseEntity<>(body, headers, status);
+*/
+
+        List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x-> x.getDefaultMessage()).toList();
+        String errStr = String.join(" / ", errors);
+        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, errStr);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
