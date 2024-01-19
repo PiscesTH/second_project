@@ -111,10 +111,6 @@ public class UserService {
 
     public ResVo putUserAddress(UserUpdAddressDto dto) {
         dto.setIuser(authenticationFacade.getLoginUserPk());
-        List<UserSelAddressVo> vo = addressMapper.selUserAddress(dto.getIuser());
-        if (vo.isEmpty() || vo.size() > 3){
-            throw new RestApiException(AuthErrorCode.INVALID_ADDRESS_SIZE);
-        }
         int result = addressMapper.updUserAddress(dto);
         if (result == 0) {
             return new ResVo(Const.FAIL);
@@ -124,6 +120,10 @@ public class UserService {
 
     public ResVo postUserAddress(UserInsAddressDto dto) {
         dto.setIuser(authenticationFacade.getLoginUserPk());
+        List<UserSelAddressVo> vo = addressMapper.selUserAddress(dto.getIuser());
+        if (vo.size() == 3) {
+            throw new RestApiException(AuthErrorCode.INVALID_ADDRESS_SIZE);
+        }
         int result = addressMapper.insUserAddress(dto);
         return new ResVo(result);
     }
