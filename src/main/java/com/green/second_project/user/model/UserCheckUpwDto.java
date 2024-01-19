@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class UserCheckUpwDto {
-    @NotBlank(message = Const.PASSWORD_BLANK_MSG)
+    @NotBlank(message = Const.PASSWORD_IS_BLANK)
     private String upw;
 }

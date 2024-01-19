@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class UserSignInDto {
     @Schema(defaultValue = "hubble")
-    @NotBlank(message = Const.ID_BLANK_MSG)
+    @NotBlank(message = Const.NM_IS_BLANK)
     private String uid;
     @Schema(defaultValue = "xptmxm123")
-    @NotBlank(message = Const.PASSWORD_BLANK_MSG)
+    @NotBlank(message = Const.PASSWORD_IS_BLANK)
     private String upw;
 }
