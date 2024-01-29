@@ -10,6 +10,15 @@
             ichild_age = #{ichildAge}
     </insert>
 
+    <insert id="insUserChildren2">
+        INSERT INTO t_user_child
+        (iuser, gender, ichild_age)
+        VALUES
+        <foreach collection="children" item="item" separator=",">
+            (#{item.iuser}, #{item.gender}, #{item.ichildAge})
+        </foreach>
+    </insert>
+
     <select id="selUserChildren">
         SELECT ichild, ichild_age, gender
         FROM t_user_child
