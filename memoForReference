@@ -3,3 +3,888 @@ https://hyeyun133.tistory.com/entry/01-%ED%9A%8C%EC%9B%90%EA%B4%80%EB%A6%AC-%EB%
 https://www.figma.com/file/2LF6tijPo3RfGidZy3dFKw/%EB%82%98%EB%82%98%EB%B9%9B?type=design&node-id=54695-25741&mode=design
 
 erp
+
+-- --------------------------------------------------------
+-- 호스트:                          192.168.0.144
+-- 서버 버전:                        10.11.3-MariaDB - mariadb.org binary distribution
+-- 서버 OS:                        Win64
+-- HeidiSQL 버전:                  12.3.0.6589
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- db_even_last_3 데이터베이스 구조 내보내기
+CREATE DATABASE IF NOT EXISTS `db_even_last_3` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `db_even_last_3`;
+
+-- 테이블 db_even_last_3.t_address 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_address` (
+  `iaddress` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iuser` int(10) unsigned NOT NULL,
+  `zip_code` varchar(200) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `address_detail` varchar(50) NOT NULL,
+  `default_address_fl` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`iaddress`),
+  KEY `iuser` (`iuser`),
+  CONSTRAINT `t_address_ibfk_1` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_address:~39 rows (대략적) 내보내기
+INSERT INTO `t_address` (`iaddress`, `iuser`, `zip_code`, `address`, `address_detail`, `default_address_fl`) VALUES
+	(1, 1, '12321', 'aaa', 'bbb', 0),
+	(2, 2, '32132', '111', '222', 0),
+	(3, 1, 'H4R', '491 6th Pass', 'Room 1352', 0),
+	(4, 2, '2445', '59 La Follette Place', '9th Floor', 0),
+	(5, 3, '34132', '3035 Porter Junction', 'Room 1435', 0),
+	(6, 4, '783 16', '3931 Oneill Alley', 'PO Box 12913', 0),
+	(7, 5, '35477', '6 Sutherland Trail', 'Apt 1788', 0),
+	(8, 6, '65911 CEDEX 9', '427 Meadow Valley Way', '6th Floor', 0),
+	(9, 7, '12221', '16329 Hudson Trail', '12th Floor', 0),
+	(10, 8, '4980-125', '65831 Melvin Hill', 'Apt 13', 0),
+	(11, 9, '22235', '526 Grover Junction', '7th Floor', 0),
+	(12, 10, '7785', '3 Oriole Drive', 'Room 1649', 0),
+	(13, 11, '9744', '0294 Twin Pines Junction', 'Apt 777', 0),
+	(14, 12, '6017', '31 Jana Drive', 'Apt 735', 0),
+	(15, 13, '152070', '7260 Sachtjen Street', 'Apt 286', 0),
+	(16, 14, '613 81', '864 5th Way', 'Suite 86', 0),
+	(17, 15, '00971', '856 Hazelcrest Way', 'Suite 93', 0),
+	(18, 16, '6754', '6 Cherokee Hill', 'PO Box 73402', 0),
+	(19, 18, '41150', '대구시 동성로', '그린컴퓨터', 0),
+	(20, 19, '21658', '부산시', '장전동', 0),
+	(21, 20, '9489', '대구 북구 도남길', '20동77호', 0),
+	(22, 21, '1546', '대구 광역시 북구', '102동110호', 0),
+	(23, 22, '43109', '대구 군위군 군위읍 개봉길 23-72', '123동1120호', 0),
+	(24, 23, '7754', '서울시', '은평구', 0),
+	(25, 23, '8852', '대전시', '둔산동', 0),
+	(26, 19, 'string', 'string', 'string', 0),
+	(27, 24, '42938', '대구 달성군 가창면 가창동로 3', '11동1호', 0),
+	(28, 25, '12312', '대구 북구', '10동', 0),
+	(29, 26, '42938', '대구 달성군 가창면 가창동로 3', '11동', 0),
+	(30, 27, '4204', '대구', '대구', 0),
+	(31, 28, '213', '123', '123', 0),
+	(32, 29, '38800', '경북 영천시 신녕면 대학길 5-13', '11동', 0),
+	(33, 30, '43109', '대구 군위군 군위읍 개봉길 23-72', '121동', 0),
+	(34, 31, '12312', '123123', '123123123', 0),
+	(35, 32, '07444', '서울 영등포구 대림로 73', '11동', 0),
+	(36, 33, '05831', '서울 송파구 동남로 99', '11동11호', 0),
+	(39, 35, '42260', '대구 수성구 고모로 31', '12동11호', 0),
+	(47, 34, '12417', '경기 가평군 가평읍 광장로22번길 27-9', '12', 0),
+	(50, 39, 'string', 'string', 'string', 0),
+	(51, 34, '36919', '경북 문경시 문경읍 이화령로 8-17', '123', 0);
+
+-- 테이블 db_even_last_3.t_basket 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_basket` (
+  `iuser` int(10) unsigned NOT NULL,
+  `iproduct` int(10) unsigned NOT NULL,
+  `product_cnt` int(10) unsigned NOT NULL,
+  `price` int(10) unsigned NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`iuser`,`iproduct`),
+  KEY `iproduct` (`iproduct`),
+  KEY `iuser` (`iuser`),
+  CONSTRAINT `FK_t_basket_t_product` FOREIGN KEY (`iproduct`) REFERENCES `t_product` (`iproduct`),
+  CONSTRAINT `t_basket_ibfk_1` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_basket:~0 rows (대략적) 내보내기
+
+-- 테이블 db_even_last_3.t_board 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_board` (
+  `iboard` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iuser` int(10) unsigned NOT NULL,
+  `board_code` tinyint(4) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `contents` varchar(2500) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`iboard`),
+  KEY `iuser` (`iuser`),
+  CONSTRAINT `t_board_ibfk_1` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`)
+) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_board:~200 rows (대략적) 내보내기
+INSERT INTO `t_board` (`iboard`, `iuser`, `board_code`, `title`, `contents`, `created_at`, `updated_at`) VALUES
+	(1, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viver', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', '2024-01-12 12:53:45', NULL),
+	(2, 1, 2, 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.', '2024-01-12 12:53:45', NULL),
+	(3, 1, 3, 'Maecenas ut massa quis augue luctus tincidunt.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', '2024-01-12 12:53:45', NULL),
+	(4, 1, 1, 'Nulla suscipit ligula in lacus.', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.', '2024-01-12 12:53:45', NULL),
+	(5, 1, 2, 'Etiam pretium iaculis justo.', 'Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.', '2024-01-12 12:53:45', NULL),
+	(6, 1, 2, 'In est risus, auctor sed, tristique in, tempus sit amet, sem.', 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', '2024-01-12 12:53:45', NULL),
+	(7, 1, 1, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibu', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2024-01-12 12:53:45', NULL),
+	(8, 1, 2, 'Donec semper sapien a libero.', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.', '2024-01-12 12:53:45', NULL),
+	(9, 1, 1, 'Nullam molestie nibh in lectus.', 'Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '2024-01-12 12:53:45', NULL),
+	(10, 1, 2, 'Aenean fermentum.', 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.', '2024-01-12 12:53:45', NULL),
+	(11, 1, 2, 'Vivamus in felis eu sapien cursus vestibulum.', 'Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.', '2024-01-12 12:53:45', NULL),
+	(12, 1, 2, 'Morbi non quam nec dui luctus rutrum.', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.', '2024-01-12 12:53:45', NULL),
+	(13, 1, 1, 'In hac habitasse platea dictumst.', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', '2024-01-12 12:53:45', NULL),
+	(14, 1, 3, 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 'In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', '2024-01-12 12:53:45', NULL),
+	(15, 1, 2, 'Cras in purus eu magna vulputate luctus.', 'Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', '2024-01-12 12:53:45', NULL),
+	(16, 1, 3, 'Suspendisse potenti.', 'Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.', '2024-01-12 12:53:45', NULL),
+	(17, 1, 2, 'Vestibulum ac est lacinia nisi venenatis tristique.', 'In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.', '2024-01-12 12:53:45', NULL),
+	(18, 1, 1, 'In quis justo.', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.', '2024-01-12 12:53:45', NULL),
+	(19, 1, 1, 'Proin at turpis a pede posuere nonummy.', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.', '2024-01-12 12:53:45', NULL),
+	(20, 1, 1, 'Morbi quis tortor id nulla ultrices aliquet.', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.', '2024-01-12 12:53:45', NULL),
+	(21, 1, 3, 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.', 'Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', '2024-01-12 12:53:45', NULL),
+	(22, 1, 2, 'Nulla ac enim.', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.', '2024-01-12 12:53:45', NULL),
+	(23, 1, 2, 'Vivamus tortor.', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.', '2024-01-12 12:53:45', NULL),
+	(24, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharet', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', '2024-01-12 12:53:45', NULL),
+	(25, 1, 2, 'Nulla tellus.', 'Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.', '2024-01-12 12:53:45', NULL),
+	(26, 1, 1, 'Donec ut dolor.', 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', '2024-01-12 12:53:45', NULL),
+	(27, 1, 3, 'Curabitur convallis.', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc.', '2024-01-12 12:53:45', NULL),
+	(28, 1, 2, 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', '2024-01-12 12:53:45', NULL),
+	(29, 1, 1, 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.', 'Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', '2024-01-12 12:53:45', NULL),
+	(30, 1, 1, 'Nam dui.', 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', '2024-01-12 12:53:45', NULL),
+	(31, 1, 1, 'Proin eu mi.', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', '2024-01-12 12:53:45', NULL),
+	(32, 1, 3, 'Integer ac leo.', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.', '2024-01-12 12:53:45', NULL),
+	(33, 1, 1, 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien ', 'Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', '2024-01-12 12:53:45', NULL),
+	(34, 1, 2, 'Vivamus vestibulum sagittis sapien.', 'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.', '2024-01-12 12:53:45', NULL),
+	(35, 1, 3, 'Integer ac neque.', 'Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', '2024-01-12 12:53:45', NULL),
+	(36, 1, 1, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibu', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', '2024-01-12 12:53:45', NULL),
+	(37, 1, 2, 'Donec posuere metus vitae ipsum.', 'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.', '2024-01-12 12:53:45', NULL),
+	(38, 1, 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.', 'Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', '2024-01-12 12:53:45', NULL),
+	(39, 1, 1, 'Etiam justo.', 'Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.', '2024-01-12 12:53:45', NULL),
+	(40, 1, 2, 'Aenean auctor gravida sem.', 'Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.', '2024-01-12 12:53:45', NULL),
+	(41, 1, 2, 'Aenean fermentum.', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.', '2024-01-12 12:53:45', NULL),
+	(42, 1, 3, 'In sagittis dui vel nisl.', 'Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', '2024-01-12 12:53:45', NULL),
+	(43, 1, 2, 'In hac habitasse platea dictumst.', 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', '2024-01-12 12:53:45', NULL),
+	(44, 1, 1, 'Aenean fermentum.', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2024-01-12 12:53:45', NULL),
+	(45, 1, 2, 'Nam nulla.', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.', '2024-01-12 12:53:45', NULL),
+	(46, 1, 1, 'In sagittis dui vel nisl.', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.', '2024-01-12 12:53:45', NULL),
+	(47, 1, 2, 'Phasellus id sapien in sapien iaculis congue.', 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', '2024-01-12 12:53:45', NULL),
+	(48, 1, 3, 'Etiam justo.', 'Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', '2024-01-12 12:53:45', NULL),
+	(49, 1, 1, 'Nam nulla.', 'Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.', '2024-01-12 12:53:45', NULL),
+	(50, 1, 2, 'Vivamus tortor.', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', '2024-01-12 12:53:45', NULL),
+	(51, 1, 3, 'Nam tristique tortor eu pede.', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.', '2024-01-12 12:53:45', NULL),
+	(52, 1, 3, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.', '2024-01-12 12:53:45', NULL),
+	(53, 1, 2, 'Curabitur in libero ut massa volutpat convallis.', 'Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.', '2024-01-12 12:53:45', NULL),
+	(54, 1, 2, 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.', '2024-01-12 12:53:45', NULL),
+	(55, 1, 3, 'Mauris lacinia sapien quis libero.', 'Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.', '2024-01-12 12:53:45', NULL),
+	(56, 1, 3, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.', '2024-01-12 12:53:45', NULL),
+	(57, 1, 1, 'Aliquam quis turpis eget elit sodales scelerisque.', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', '2024-01-12 12:53:45', NULL),
+	(58, 1, 3, 'Fusce consequat.', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', '2024-01-12 12:53:45', NULL),
+	(59, 1, 2, 'Nullam porttitor lacus at turpis.', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '2024-01-12 12:53:45', NULL),
+	(60, 1, 3, 'Suspendisse potenti.', 'Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.', '2024-01-12 12:53:45', NULL),
+	(61, 1, 2, 'Donec vitae nisi.', 'Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2024-01-12 12:53:45', NULL),
+	(62, 1, 1, 'Phasellus sit amet erat.', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', '2024-01-12 12:53:45', NULL),
+	(63, 1, 2, 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.', '2024-01-12 12:53:45', NULL),
+	(64, 1, 3, 'Nulla ac enim.', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', '2024-01-12 12:53:45', NULL),
+	(65, 1, 2, 'Aliquam quis turpis eget elit sodales scelerisque.', 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.', '2024-01-12 12:53:45', NULL),
+	(66, 1, 2, 'In est risus, auctor sed, tristique in, tempus sit amet, sem.', 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.', '2024-01-12 12:53:45', NULL),
+	(67, 1, 3, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', '2024-01-12 12:53:45', NULL),
+	(68, 1, 2, 'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.', '2024-01-12 12:53:45', NULL),
+	(69, 1, 2, 'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio.', '2024-01-12 12:53:45', NULL),
+	(70, 1, 2, 'Donec quis orci eget orci vehicula condimentum.', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.', '2024-01-12 12:53:45', NULL),
+	(71, 1, 1, 'Suspendisse potenti.', 'Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', '2024-01-12 12:53:45', NULL),
+	(72, 1, 2, 'In hac habitasse platea dictumst.', 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.', '2024-01-12 12:53:45', NULL),
+	(73, 1, 1, 'Curabitur gravida nisi at nibh.', 'Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.', '2024-01-12 12:53:45', NULL),
+	(74, 1, 1, 'Nullam varius.', 'In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '2024-01-12 12:53:45', NULL),
+	(75, 1, 2, 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', '2024-01-12 12:53:45', NULL),
+	(76, 1, 1, 'Aenean auctor gravida sem.', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', '2024-01-12 12:53:45', NULL),
+	(77, 1, 1, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.', '2024-01-12 12:53:45', NULL),
+	(78, 1, 1, 'Donec posuere metus vitae ipsum.', 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', '2024-01-12 12:53:45', NULL),
+	(79, 1, 3, 'Sed sagittis.', 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.', '2024-01-12 12:53:45', NULL),
+	(80, 1, 1, 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', '2024-01-12 12:53:45', NULL),
+	(81, 1, 1, 'Quisque porta volutpat erat.', 'In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', '2024-01-12 12:53:45', NULL),
+	(82, 1, 1, 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.', '2024-01-12 12:53:45', NULL),
+	(83, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viver', 'Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.', '2024-01-12 12:53:45', NULL),
+	(84, 1, 3, 'Suspendisse ornare consequat lectus.', 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.', '2024-01-12 12:53:45', NULL),
+	(85, 1, 2, 'In quis justo.', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.', '2024-01-12 12:53:45', NULL),
+	(86, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viver', 'Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.', '2024-01-12 12:53:45', NULL),
+	(87, 1, 3, 'Cras in purus eu magna vulputate luctus.', 'Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', '2024-01-12 12:53:45', NULL),
+	(88, 1, 2, 'Ut tellus.', 'Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '2024-01-12 12:53:45', NULL),
+	(89, 1, 2, 'Integer ac neque.', 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.', '2024-01-12 12:53:45', NULL),
+	(90, 1, 2, 'Nulla tellus.', 'Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.', '2024-01-12 12:53:45', NULL),
+	(91, 1, 2, 'Nulla mollis molestie lorem.', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.', '2024-01-12 12:53:45', NULL),
+	(92, 1, 1, 'Morbi ut odio.', 'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2024-01-12 12:53:45', NULL),
+	(93, 1, 3, 'Integer non velit.', 'Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.', '2024-01-12 12:53:45', NULL),
+	(94, 1, 1, 'Curabitur convallis.', 'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', '2024-01-12 12:53:45', NULL),
+	(95, 1, 2, 'Aliquam non mauris.', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.', '2024-01-12 12:53:45', NULL),
+	(96, 1, 2, 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2024-01-12 12:53:45', NULL),
+	(97, 1, 1, 'Duis mattis egestas metus.', 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.', '2024-01-12 12:53:45', NULL),
+	(98, 1, 2, 'Suspendisse potenti.', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.', '2024-01-12 12:53:45', NULL),
+	(99, 1, 3, 'Quisque ut erat.', 'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.', '2024-01-12 12:53:45', NULL),
+	(100, 1, 3, 'Donec ut dolor.', 'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.', '2024-01-12 12:53:45', NULL),
+	(101, 1, 2, 'In blandit ultrices enim.', 'Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', '2024-01-12 12:53:45', NULL),
+	(102, 1, 1, 'Suspendisse potenti.', 'In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl.', '2024-01-12 12:53:45', NULL),
+	(103, 1, 3, 'Nulla ac enim.', 'Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', '2024-01-12 12:53:45', NULL),
+	(104, 1, 3, 'Duis ac nibh.', 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.', '2024-01-12 12:53:45', NULL),
+	(105, 1, 2, 'Praesent lectus.', 'In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '2024-01-12 12:53:45', NULL),
+	(106, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibu', 'Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', '2024-01-12 12:53:45', NULL),
+	(107, 1, 2, 'Mauris lacinia sapien quis libero.', 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.', '2024-01-12 12:53:45', NULL),
+	(108, 1, 3, 'Morbi ut odio.', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', '2024-01-12 12:53:45', NULL),
+	(109, 1, 1, 'Nunc purus.', 'Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.', '2024-01-12 12:53:45', NULL),
+	(110, 1, 3, 'Nunc purus.', 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', '2024-01-12 12:53:45', NULL),
+	(111, 1, 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.', '2024-01-12 12:53:45', NULL),
+	(112, 1, 2, 'Suspendisse ornare consequat lectus.', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', '2024-01-12 12:53:45', NULL),
+	(113, 1, 3, 'Etiam vel augue.', 'Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.', '2024-01-12 12:53:45', NULL),
+	(114, 1, 2, 'Pellentesque at nulla.', 'Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.', '2024-01-12 12:53:45', NULL),
+	(115, 1, 1, 'Aenean fermentum.', 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.', '2024-01-12 12:53:45', NULL),
+	(116, 1, 1, 'Nunc rhoncus dui vel sem.', 'Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', '2024-01-12 12:53:45', NULL),
+	(117, 1, 1, 'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero qu', 'Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', '2024-01-12 12:53:45', NULL),
+	(118, 1, 1, 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 'Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.', '2024-01-12 12:53:45', NULL),
+	(119, 1, 2, 'Proin interdum mauris non ligula pellentesque ultrices.', 'Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.', '2024-01-12 12:53:45', NULL),
+	(120, 1, 2, 'Nunc nisl.', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '2024-01-12 12:53:45', NULL),
+	(121, 1, 2, 'Duis at velit eu est congue elementum.', 'Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2024-01-12 12:53:45', NULL),
+	(122, 1, 2, 'Nullam molestie nibh in lectus.', 'In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2024-01-12 12:53:45', NULL),
+	(123, 1, 2, 'Nunc nisl.', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.', '2024-01-12 12:53:45', NULL),
+	(124, 1, 2, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viver', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.', '2024-01-12 12:53:45', NULL),
+	(125, 1, 1, 'Donec semper sapien a libero.', 'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.', '2024-01-12 12:53:45', NULL),
+	(126, 1, 3, 'Nulla ac enim.', 'Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2024-01-12 12:53:45', NULL),
+	(127, 1, 2, 'Fusce consequat.', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.', '2024-01-12 12:53:45', NULL),
+	(128, 1, 3, 'Integer a nibh.', 'Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.', '2024-01-12 12:53:45', NULL),
+	(129, 1, 2, 'In blandit ultrices enim.', 'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.', '2024-01-12 12:53:45', NULL),
+	(130, 1, 3, 'Donec dapibus.', 'Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.', '2024-01-12 12:53:45', NULL),
+	(131, 1, 3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nul', 'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.', '2024-01-12 12:53:45', NULL),
+	(132, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharet', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', '2024-01-12 12:53:45', NULL),
+	(133, 1, 1, 'Donec semper sapien a libero.', 'Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.', '2024-01-12 12:53:45', NULL),
+	(134, 1, 1, 'Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '2024-01-12 12:53:45', NULL),
+	(135, 1, 2, 'Nulla tellus.', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo.', '2024-01-12 12:53:45', NULL),
+	(136, 1, 1, 'Quisque porta volutpat erat.', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit.', '2024-01-12 12:53:45', NULL),
+	(137, 1, 3, 'Duis aliquam convallis nunc.', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.', '2024-01-12 12:53:45', NULL),
+	(138, 1, 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.', '2024-01-12 12:53:45', NULL),
+	(139, 1, 1, 'Nullam sit amet turpis elementum ligula vehicula consequat.', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.', '2024-01-12 12:53:45', NULL),
+	(140, 1, 3, 'Praesent lectus.', 'Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum.', '2024-01-12 12:53:45', NULL),
+	(141, 1, 1, 'Duis at velit eu est congue elementum.', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.', '2024-01-12 12:53:45', NULL),
+	(142, 1, 2, 'Proin eu mi.', 'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.', '2024-01-12 12:53:45', NULL),
+	(143, 1, 1, 'Donec vitae nisi.', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis.', '2024-01-12 12:53:45', NULL),
+	(144, 1, 2, 'Praesent blandit.', 'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', '2024-01-12 12:53:45', NULL),
+	(145, 1, 3, 'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero qu', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.', '2024-01-12 12:53:45', NULL),
+	(146, 1, 1, 'Proin risus.', 'Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', '2024-01-12 12:53:45', NULL),
+	(147, 1, 2, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2024-01-12 12:53:45', NULL),
+	(148, 1, 2, 'Praesent lectus.', 'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', '2024-01-12 12:53:45', NULL),
+	(149, 1, 3, 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', 'Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.', '2024-01-12 12:53:45', NULL),
+	(150, 1, 3, 'In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula ne', 'Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', '2024-01-12 12:53:45', NULL),
+	(151, 1, 3, 'Vestibulum sed magna at nunc commodo placerat.', 'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', '2024-01-12 12:53:45', NULL),
+	(152, 1, 3, 'Aliquam sit amet diam in magna bibendum imperdiet.', 'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', '2024-01-12 12:53:45', NULL),
+	(153, 1, 3, 'Suspendisse potenti.', 'Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.', '2024-01-12 12:53:45', NULL),
+	(154, 1, 2, 'Aliquam quis turpis eget elit sodales scelerisque.', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', '2024-01-12 12:53:45', NULL),
+	(155, 1, 1, 'Etiam justo.', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.', '2024-01-12 12:53:45', NULL),
+	(156, 1, 2, 'Curabitur gravida nisi at nibh.', 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', '2024-01-12 12:53:45', NULL),
+	(157, 1, 1, 'Cras pellentesque volutpat dui.', 'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.', '2024-01-12 12:53:45', NULL),
+	(158, 1, 3, 'Aliquam sit amet diam in magna bibendum imperdiet.', 'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.', '2024-01-12 12:53:45', NULL),
+	(159, 1, 3, 'Duis ac nibh.', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.', '2024-01-12 12:53:45', NULL),
+	(160, 1, 3, 'Nam dui.', 'Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.', '2024-01-12 12:53:45', NULL),
+	(161, 1, 2, 'Vivamus vel nulla eget eros elementum pellentesque.', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.', '2024-01-12 12:53:45', NULL),
+	(162, 1, 2, 'Etiam vel augue.', 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', '2024-01-12 12:53:45', NULL),
+	(163, 1, 3, 'Morbi a ipsum.', 'Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', '2024-01-12 12:53:45', NULL),
+	(164, 1, 1, 'Aenean lectus.', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.', '2024-01-12 12:53:45', NULL),
+	(165, 1, 1, 'Morbi non lectus.', 'Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', '2024-01-12 12:53:45', NULL),
+	(166, 1, 2, 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc', 'Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', '2024-01-12 12:53:45', NULL),
+	(167, 1, 1, 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 'In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.', '2024-01-12 12:53:45', NULL),
+	(168, 1, 2, 'Fusce consequat.', 'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2024-01-12 12:53:45', NULL),
+	(169, 1, 1, 'Integer non velit.', 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.', '2024-01-12 12:53:45', NULL),
+	(170, 1, 3, 'Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', 'Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', '2024-01-12 12:53:45', NULL),
+	(171, 1, 3, 'Mauris lacinia sapien quis libero.', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.', '2024-01-12 12:53:45', NULL),
+	(172, 1, 3, 'Suspendisse potenti.', 'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.', '2024-01-12 12:53:45', NULL),
+	(173, 1, 2, 'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.', '2024-01-12 12:53:45', NULL),
+	(174, 1, 3, 'Donec ut dolor.', 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.', '2024-01-12 12:53:45', NULL),
+	(175, 1, 1, 'Nam dui.', 'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.', '2024-01-12 12:53:45', NULL),
+	(176, 1, 1, 'Morbi non quam nec dui luctus rutrum.', 'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', '2024-01-12 12:53:45', NULL),
+	(177, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibu', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum.', '2024-01-12 12:53:45', NULL),
+	(178, 1, 3, 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.', 'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', '2024-01-12 12:53:45', NULL),
+	(179, 1, 2, 'Etiam justo.', 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', '2024-01-12 12:53:45', NULL),
+	(180, 1, 3, 'Suspendisse potenti.', 'Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.', '2024-01-12 12:53:45', NULL),
+	(181, 1, 1, 'Nam nulla.', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh.', '2024-01-12 12:53:45', NULL),
+	(182, 1, 1, 'In blandit ultrices enim.', 'Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.', '2024-01-12 12:53:45', NULL),
+	(183, 1, 1, 'Suspendisse ornare consequat lectus.', 'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.', '2024-01-12 12:53:45', NULL),
+	(184, 1, 2, 'Vestibulum rutrum rutrum neque.', 'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2024-01-12 12:53:45', NULL),
+	(185, 1, 1, 'Nam tristique tortor eu pede.', 'Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.', '2024-01-12 12:53:45', NULL),
+	(186, 1, 3, 'Aliquam quis turpis eget elit sodales scelerisque.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', '2024-01-12 12:53:45', NULL),
+	(187, 1, 2, 'In hac habitasse platea dictumst.', 'Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.', '2024-01-12 12:53:45', NULL),
+	(188, 1, 2, 'Donec quis orci eget orci vehicula condimentum.', 'Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.', '2024-01-12 12:53:45', NULL),
+	(189, 1, 3, 'In hac habitasse platea dictumst.', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.', '2024-01-12 12:53:45', NULL),
+	(190, 1, 1, 'Fusce posuere felis sed lacus.', 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.', '2024-01-12 12:53:45', NULL),
+	(191, 1, 1, 'Praesent lectus.', 'Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.', '2024-01-12 12:53:45', NULL),
+	(192, 1, 2, 'Duis ac nibh.', 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.', '2024-01-12 12:53:45', NULL),
+	(193, 1, 1, 'Quisque ut erat.', 'In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', '2024-01-12 12:53:45', NULL),
+	(194, 1, 3, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibu', 'Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', '2024-01-12 12:53:46', NULL),
+	(195, 1, 2, 'Integer tincidunt ante vel ipsum.', 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', '2024-01-12 12:53:46', NULL),
+	(196, 1, 1, 'Proin risus.', 'Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', '2024-01-12 12:53:46', NULL),
+	(197, 1, 1, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.', '2024-01-12 12:53:46', NULL),
+	(198, 1, 3, 'Sed accumsan felis.', 'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.', '2024-01-12 12:53:46', NULL),
+	(199, 1, 1, 'Cras in purus eu magna vulputate luctus.', 'In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.', '2024-01-12 12:53:46', NULL),
+	(200, 1, 1, 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 'Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', '2024-01-12 12:53:46', NULL);
+
+-- 테이블 db_even_last_3.t_board_comment 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_board_comment` (
+  `icomment` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iboard` int(10) unsigned NOT NULL,
+  `iuser` int(10) unsigned NOT NULL,
+  `comment` varchar(1000) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`icomment`),
+  KEY `iboard` (`iboard`),
+  KEY `iuser` (`iuser`),
+  CONSTRAINT `t_board_comment_ibfk_1` FOREIGN KEY (`iboard`) REFERENCES `t_board` (`iboard`),
+  CONSTRAINT `t_board_comment_ibfk_2` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_board_comment:~1 rows (대략적) 내보내기
+INSERT INTO `t_board_comment` (`icomment`, `iboard`, `iuser`, `comment`, `created_at`, `updated_at`) VALUES
+	(2, 1, 19, '댓글을 써보아요 후햐햐', '2024-01-24 13:00:05', NULL);
+
+-- 테이블 db_even_last_3.t_board_pics 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_board_pics` (
+  `iboard_pic` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iboard` int(10) unsigned NOT NULL,
+  `board_pic` varchar(2500) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`iboard_pic`),
+  KEY `iboard` (`iboard`),
+  CONSTRAINT `FK_t_board_pics_t_board` FOREIGN KEY (`iboard`) REFERENCES `t_board` (`iboard`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_board_pics:~0 rows (대략적) 내보내기
+
+-- 테이블 db_even_last_3.t_child_age 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_child_age` (
+  `ichild_age` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `child_age` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ichild_age`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_child_age:~4 rows (대략적) 내보내기
+INSERT INTO `t_child_age` (`ichild_age`, `child_age`, `created_at`) VALUES
+	(1, '임신/출산(~0개월)', '2024-01-15 16:52:53'),
+	(2, '신생아(1~3개월)', '2024-01-15 16:53:04'),
+	(3, '베이비(4~23개월)', '2024-01-15 16:53:19'),
+	(4, '키즈(24개월~)', '2024-01-15 16:53:30');
+
+-- 테이블 db_even_last_3.t_main_category 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_main_category` (
+  `imain` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `main_category` varchar(20) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`imain`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_main_category:~3 rows (대략적) 내보내기
+INSERT INTO `t_main_category` (`imain`, `main_category`, `created_at`) VALUES
+	(2, 'A', '2024-01-11'),
+	(3, 'B', '2024-01-11'),
+	(4, 'C', '2024-01-11');
+
+-- 테이블 db_even_last_3.t_middle_category 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_middle_category` (
+  `imain` int(10) unsigned NOT NULL,
+  `imiddle` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `middle_category` varchar(20) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`imiddle`,`imain`),
+  KEY `imain` (`imain`),
+  KEY `imiddle` (`imiddle`) USING BTREE,
+  CONSTRAINT `FK_t_middle_category_t_main_category` FOREIGN KEY (`imain`) REFERENCES `t_main_category` (`imain`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_middle_category:~6 rows (대략적) 내보내기
+INSERT INTO `t_middle_category` (`imain`, `imiddle`, `middle_category`, `created_at`) VALUES
+	(2, 1, '살균기', '2024-01-11'),
+	(2, 2, '기타제품', '2024-01-11'),
+	(3, 3, 'BB', '2024-01-11'),
+	(4, 4, 'Ca', '2024-01-11'),
+	(4, 5, 'Cb', '2024-01-11'),
+	(4, 6, 'Cc', '2024-01-11');
+
+-- 테이블 db_even_last_3.t_order 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_order` (
+  `iorder` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iuser` int(10) unsigned NOT NULL,
+  `iaddress` int(10) unsigned NOT NULL,
+  `ipayment_option` int(10) unsigned NOT NULL DEFAULT 1,
+  `addressee_nm` varchar(10) DEFAULT NULL,
+  `phone_number` varchar(13) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `process_state` tinyint(4) unsigned NOT NULL DEFAULT 0,
+  `total_price` int(10) unsigned NOT NULL,
+  `delivery_request` varchar(100) DEFAULT NULL,
+  `delete_fl` int(11) unsigned NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`iorder`),
+  KEY `iuser` (`iuser`),
+  KEY `iaddress` (`iaddress`),
+  KEY `FK_t_order_t_payment_option` (`ipayment_option`),
+  CONSTRAINT `FK_t_order_t_payment_option` FOREIGN KEY (`ipayment_option`) REFERENCES `t_payment_option` (`ipayment_option`),
+  CONSTRAINT `t_order_ibfk_1` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`),
+  CONSTRAINT `t_order_ibfk_2` FOREIGN KEY (`iaddress`) REFERENCES `t_address` (`iaddress`)
+) ENGINE=InnoDB AUTO_INCREMENT=100007 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_order:~39 rows (대략적) 내보내기
+INSERT INTO `t_order` (`iorder`, `iuser`, `iaddress`, `ipayment_option`, `addressee_nm`, `phone_number`, `email`, `process_state`, `total_price`, `delivery_request`, `delete_fl`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 3, 'Johnke', '647-541-3681', NULL, 3, 19111, NULL, 1, '2024-01-11 15:25:24', '2024-01-29 14:38:48'),
+	(2, 1, 1, 3, 'Gutierrez', '258-479-8967', NULL, 4, 19710, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 14:38:51'),
+	(3, 1, 1, 2, 'Muldrew', '644-182-5582', NULL, 2, 19858, NULL, 1, '2024-01-11 15:25:24', '2024-01-29 14:38:52'),
+	(4, 1, 1, 2, 'Fetter', '387-689-4393', NULL, 4, 34344, NULL, 1, '2024-01-11 15:25:24', '2024-01-29 14:38:52'),
+	(5, 1, 1, 3, 'Teck', '744-432-5494', NULL, 4, 34892, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(6, 1, 1, 2, 'Lockey', '929-241-9942', NULL, 4, 44589, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(7, 1, 1, 3, 'Girardot', '743-723-1489', NULL, 2, 33782, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(8, 1, 1, 2, 'Lucks', '353-930-9658', NULL, 1, 43611, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(9, 1, 1, 3, 'Ramiro', '766-541-6242', NULL, 2, 37841, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(10, 1, 1, 3, 'Loram', '297-768-4380', NULL, 2, 29580, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(11, 1, 1, 3, 'Decker', '206-686-4986', NULL, 4, 35404, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(12, 1, 1, 2, 'Hamby', '792-668-1505', NULL, 3, 19405, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(13, 39, 1, 2, 'Downage', '636-504-9720', NULL, 4, 33730, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:17'),
+	(14, 39, 1, 3, 'Zorzi', '818-604-6451', NULL, 2, 13896, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:19'),
+	(15, 39, 1, 3, 'Herreros', '981-476-5369', NULL, 1, 22720, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:24'),
+	(16, 39, 1, 2, 'Bosma', '180-183-9501', NULL, 3, 25377, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:28'),
+	(17, 39, 1, 3, 'Dorn', '350-921-0421', NULL, 4, 28173, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:35'),
+	(18, 39, 1, 3, 'O\'Giany', '792-397-1938', NULL, 2, 17257, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:37'),
+	(19, 39, 1, 3, 'Condie', '764-235-8061', NULL, 3, 15005, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:39'),
+	(20, 39, 1, 2, 'Hadlington', '725-491-2359', NULL, 4, 31393, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 17:35:45'),
+	(21, 1, 1, 2, 'McGilvray', '854-195-1670', NULL, 1, 41214, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(22, 1, 1, 2, 'Pannaman', '190-801-7883', NULL, 4, 45583, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(23, 1, 1, 3, 'Lowey', '259-943-1083', NULL, 2, 30477, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(24, 2, 2, 3, 'Stegel', '431-453-2564', NULL, 4, 17048, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(25, 2, 2, 2, 'Barthram', '418-261-6460', NULL, 2, 13834, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(26, 2, 2, 3, 'Fishenden', '457-110-0563', NULL, 2, 49026, NULL, 1, '2024-01-11 15:25:24', '2024-01-29 14:38:56'),
+	(27, 2, 2, 2, 'Wagge', '989-700-6458', NULL, 2, 47417, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(28, 2, 2, 3, 'Brookesbie', '203-690-1992', NULL, 3, 25509, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(29, 2, 2, 2, 'Lecount', '660-321-9458', NULL, 3, 17549, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(30, 2, 2, 2, 'Dermot', '202-148-0636', NULL, 2, 26287, NULL, 0, '2024-01-11 15:25:24', '2024-01-29 15:34:19'),
+	(31, 1, 1, 2, 'zzz', '010-5555-5555', '2222@nn.com', 1, 1, '배송요청사항', 0, '2024-01-22 16:23:19', '2024-01-29 15:34:19'),
+	(33, 23, 25, 3, '허블', '010-5123-6543', 'hubble@naver.com', 0, 30000, NULL, 0, '2024-01-24 12:37:49', '2024-01-29 15:34:39'),
+	(100000, 19, 20, 1, NULL, NULL, NULL, 0, 5000000, NULL, 0, '2024-01-25 15:40:06', '2024-01-29 15:34:39'),
+	(100001, 23, 24, 1, NULL, NULL, NULL, 0, 30000, NULL, 0, '2024-01-29 10:04:58', '2024-01-29 15:34:39'),
+	(100002, 23, 24, 1, NULL, NULL, NULL, 0, 30000, NULL, 0, '2024-01-29 10:06:34', '2024-01-29 15:34:39'),
+	(100003, 23, 24, 1, NULL, NULL, NULL, 0, 30000, NULL, 0, '2024-01-29 10:10:15', '2024-01-29 15:34:39'),
+	(100004, 23, 24, 2, '주소입니다주소주소', '010-5571-6794', 'hubble@gmail.com', 0, 30000, NULL, 0, '2024-01-29 10:13:18', '2024-01-29 15:34:39'),
+	(100005, 23, 24, 1, NULL, NULL, NULL, 0, 67500, NULL, 0, '2024-01-29 15:40:29', NULL),
+	(100006, 23, 24, 1, NULL, NULL, NULL, 0, 67500, NULL, 0, '2024-01-29 15:41:31', NULL);
+
+-- 테이블 db_even_last_3.t_order_details 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_order_details` (
+  `idetails` int(10) unsigned NOT NULL,
+  `iorder` int(10) unsigned NOT NULL,
+  `iproduct` int(10) unsigned NOT NULL,
+  `product_cnt` int(10) unsigned NOT NULL,
+  `product_price` int(10) unsigned NOT NULL,
+  `product_total_price` int(10) unsigned NOT NULL,
+  `refund_fl` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`iorder`,`iproduct`),
+  UNIQUE KEY `idetails` (`idetails`),
+  KEY `iproduct` (`iproduct`),
+  CONSTRAINT `FK_t_order_details_t_order` FOREIGN KEY (`iorder`) REFERENCES `t_order` (`iorder`),
+  CONSTRAINT `t_order_details_ibfk_2` FOREIGN KEY (`iproduct`) REFERENCES `t_product` (`iproduct`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_order_details:~83 rows (대략적) 내보내기
+INSERT INTO `t_order_details` (`idetails`, `iorder`, `iproduct`, `product_cnt`, `product_price`, `product_total_price`, `refund_fl`, `created_at`, `updated_at`) VALUES
+	(73, 1, 16, 1, 28533, 28533, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(71, 1, 21, 1, 29097, 29097, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(36, 1, 23, 2, 28026, 56052, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(2, 2, 12, 3, 19571, 58713, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(42, 2, 17, 2, 24071, 48142, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(55, 2, 21, 3, 16048, 48144, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(34, 2, 28, 2, 26700, 53400, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(72, 3, 5, 1, 18250, 18250, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(48, 3, 13, 1, 7319, 7319, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(35, 3, 22, 3, 15390, 46170, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(41, 3, 26, 3, 5078, 15234, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(21, 4, 8, 3, 15481, 46443, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(54, 4, 21, 2, 16032, 32064, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(18, 5, 1, 2, 21848, 43696, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(23, 5, 5, 3, 11086, 33258, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(50, 5, 6, 2, 11300, 22600, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(74, 5, 19, 3, 26112, 78336, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(40, 5, 23, 3, 14569, 43707, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(1, 5, 29, 3, 20284, 60852, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(39, 6, 5, 2, 25439, 50878, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(67, 6, 6, 1, 9087, 9087, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(66, 7, 15, 3, 21761, 65283, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(27, 8, 27, 2, 16969, 33938, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(52, 9, 1, 2, 15977, 31954, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(46, 9, 24, 3, 13800, 41400, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(45, 10, 19, 2, 17891, 35782, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(28, 11, 1, 3, 5777, 17331, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(3, 11, 2, 2, 27657, 55314, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(61, 11, 19, 1, 16116, 16116, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(29, 12, 7, 2, 11008, 22016, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(12, 12, 14, 2, 16690, 33380, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(26, 13, 4, 3, 23129, 69387, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(16, 13, 10, 1, 15231, 15231, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(63, 13, 13, 1, 17555, 17555, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(14, 14, 23, 2, 12260, 24520, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(17, 14, 25, 2, 24868, 49736, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(51, 15, 11, 1, 27421, 27421, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(5, 15, 16, 2, 28034, 56068, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(11, 15, 23, 2, 25637, 51274, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(58, 15, 25, 2, 16630, 33260, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(8, 16, 11, 3, 6556, 19668, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(60, 16, 18, 1, 18597, 18597, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(56, 17, 17, 2, 14776, 29552, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(19, 18, 13, 1, 23213, 23213, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(69, 18, 17, 2, 7598, 15196, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(7, 18, 25, 1, 13777, 13777, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(53, 18, 27, 1, 6528, 6528, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(64, 18, 29, 2, 28856, 57712, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(65, 19, 18, 3, 8373, 25119, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(32, 19, 28, 2, 19246, 38492, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(4, 20, 18, 3, 25663, 76989, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(38, 20, 26, 2, 11159, 22318, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(62, 21, 2, 3, 29464, 88392, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(37, 21, 17, 3, 6702, 20106, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(57, 21, 20, 2, 12991, 25982, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(10, 22, 3, 2, 20714, 41428, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(33, 22, 16, 2, 10523, 21046, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(43, 22, 19, 3, 9909, 29727, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(20, 24, 5, 3, 23820, 71460, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(44, 24, 6, 3, 20776, 62328, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(49, 24, 7, 2, 12253, 24506, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(6, 24, 15, 1, 26936, 26936, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(25, 24, 29, 2, 24473, 48946, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(70, 25, 2, 1, 9691, 9691, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(15, 25, 24, 2, 25452, 50904, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(68, 25, 26, 2, 6037, 12074, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(59, 25, 28, 3, 11384, 34152, 0, '2024-01-11 15:31:01', '2024-01-12 09:15:55'),
+	(22, 26, 2, 1, 20963, 20963, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(24, 27, 8, 2, 19582, 39164, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(31, 28, 9, 1, 12074, 12074, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(47, 29, 5, 2, 6573, 13146, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(13, 29, 16, 2, 5716, 11432, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(30, 30, 19, 2, 29165, 58330, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(9, 30, 30, 1, 7485, 7485, 0, '2024-01-11 15:31:00', '2024-01-12 09:15:55'),
+	(77, 33, 1, 2, 10000, 20000, 0, '2024-01-24 12:37:49', NULL),
+	(78, 33, 2, 1, 10000, 10000, 1, '2024-01-24 12:37:49', '2024-01-25 16:49:01'),
+	(79, 100000, 1, 1, 5000000, 5000000, 0, '2024-01-25 15:40:06', NULL),
+	(80, 100001, 1, 1, 30000, 30000, 0, '2024-01-29 10:04:58', NULL),
+	(81, 100002, 1, 1, 30000, 30000, 0, '2024-01-29 10:06:34', NULL),
+	(82, 100003, 1, 1, 30000, 30000, 0, '2024-01-29 10:10:15', NULL),
+	(83, 100004, 1, 1, 30000, 30000, 0, '2024-01-29 10:13:18', NULL),
+	(84, 100005, 1, 1, 67500, 67500, 0, '2024-01-29 15:40:29', NULL),
+	(85, 100006, 1, 1, 67500, 67500, 0, '2024-01-29 15:41:31', NULL);
+
+-- 테이블 db_even_last_3.t_payment_option 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_payment_option` (
+  `ipayment_option` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `payment_option` varchar(20) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ipayment_option`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_payment_option:~4 rows (대략적) 내보내기
+INSERT INTO `t_payment_option` (`ipayment_option`, `payment_option`, `created_at`) VALUES
+	(1, '결제 수단 미지정', '2024-01-11'),
+	(2, '무통장 입금', '2024-01-11'),
+	(3, '카드', '2024-01-11');
+
+-- 테이블 db_even_last_3.t_product 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_product` (
+  `iproduct` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `imain` int(10) unsigned NOT NULL,
+  `imiddle` int(10) unsigned NOT NULL,
+  `product_nm` varchar(150) NOT NULL,
+  `product_details` varchar(1000) DEFAULT NULL,
+  `recommand_age` tinyint(4) NOT NULL DEFAULT 0,
+  `price` int(10) unsigned NOT NULL,
+  `rep_pic` varchar(1000) NOT NULL,
+  `remained_product` int(10) unsigned NOT NULL,
+  `new_fl` int(10) unsigned NOT NULL DEFAULT 0,
+  `rc_fl` int(10) unsigned NOT NULL DEFAULT 0,
+  `pop_fl` int(10) unsigned NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`iproduct`),
+  KEY `t_product_t_middle_category` (`imain`,`imiddle`) USING BTREE,
+  KEY `FK_t_product_t_middle_category_2` (`imiddle`),
+  CONSTRAINT `FK_t_product_t_middle_category` FOREIGN KEY (`imain`) REFERENCES `t_middle_category` (`imain`),
+  CONSTRAINT `FK_t_product_t_middle_category_2` FOREIGN KEY (`imiddle`) REFERENCES `t_middle_category` (`imiddle`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_product:~30 rows (대략적) 내보내기
+INSERT INTO `t_product` (`iproduct`, `imain`, `imiddle`, `product_nm`, `product_details`, `recommand_age`, `price`, `rep_pic`, `remained_product`, `new_fl`, `rc_fl`, `pop_fl`, `created_at`, `updated_at`) VALUES
+	(1, 2, 3, 'vel', 'Etiam faucibus cursus urna.', 1, 20607, '사진', 4, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:19:47'),
+	(2, 2, 4, 'volutpat', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.', 3, 35048, '사진', 5, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:19:47'),
+	(3, 2, 3, 'nunc', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.', 3, 14305, '사진', 8, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:19:47'),
+	(4, 2, 6, 'a', 'Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.', 0, 26731, '사진', 6, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:19:47'),
+	(5, 3, 3, 'lectus', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', 4, 12786, '사진', 2, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:19:47'),
+	(6, 2, 3, 'suscipit', 'Mauris ullamcorper purus sit amet nulla.', 2, 39422, '사진', 1, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:33'),
+	(7, 2, 3, 'eleifend', 'Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 0, 13720, '사진', 10, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:33'),
+	(8, 2, 3, 'lectus', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 2, 31728, '사진', 2, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:33'),
+	(9, 4, 1, 'ac', 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', 3, 35482, '사진', 6, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:33'),
+	(10, 2, 5, 'ante', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', 2, 49095, '사진', 3, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:33'),
+	(11, 2, 2, 'posuere', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.', 3, 15948, '사진', 3, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:46'),
+	(12, 2, 3, 'elit', 'Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 0, 37823, '사진', 9, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:46'),
+	(13, 2, 3, 'faucibus', 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis.', 3, 41765, '사진', 2, 0, 1, 0, '2024-01-11 15:08:16', '2024-01-29 10:18:46'),
+	(14, 2, 6, 'ultricies', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', 2, 16850, '사진', 6, 0, 1, 1, '2024-01-11 15:08:16', '2024-01-29 10:20:14'),
+	(15, 2, 2, 'velit', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', 1, 16013, '사진', 8, 0, 1, 1, '2024-01-11 15:08:16', '2024-01-29 10:20:16'),
+	(16, 2, 5, 'ultrices', 'Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio.', 4, 20094, '사진', 2, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:20:03'),
+	(17, 2, 2, 'duis', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 3, 33184, '사진', 8, 0, 0, 1, '2024-01-11 15:08:16', '2024-01-29 10:20:03'),
+	(18, 2, 3, 'ornare', 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.', 1, 44075, '사진', 10, 0, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:17:31'),
+	(19, 2, 1, 'aliquet', 'In quis justo. Maecenas rhoncus aliquam lacus.', 2, 43722, '사진', 2, 0, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:17:31'),
+	(20, 2, 5, 'hac', 'Suspendisse potenti.', 3, 21764, '사진', 7, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(21, 2, 2, 'turpis', 'Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.', 0, 49494, '사진', 2, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(22, 2, 3, 'nisl', 'Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 3, 37476, '사진', 9, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(23, 2, 4, 'lectus', 'Proin interdum mauris non ligula pellentesque ultrices.', 1, 31951, '사진', 5, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(24, 2, 5, 'mauris', 'Praesent blandit.', 2, 28219, '사진', 9, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(25, 2, 1, 'vivamus', 'Phasellus sit amet erat.', 2, 46900, '사진', 1, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(26, 2, 6, 'urna', 'In eleifend quam a odio.', 3, 28294, '사진', 7, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(27, 2, 2, 'lorem', 'Praesent lectus.', 3, 35470, '사진', 10, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(28, 2, 3, 'dictumst', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 3, 31498, '사진', 1, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26'),
+	(29, 2, 1, 'platea', 'Nulla tellus. In sagittis dui vel nisl.', 0, 13574, '사진', 6, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 16:39:02'),
+	(30, 2, 3, 'luctus', 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', 4, 23070, '사진', 5, 1, 0, 0, '2024-01-11 15:08:16', '2024-01-29 10:19:26');
+
+-- 테이블 db_even_last_3.t_product_pics 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_product_pics` (
+  `iproduct_pics` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iproduct` int(10) unsigned NOT NULL,
+  `product_pic` varchar(1000) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`iproduct_pics`),
+  KEY `iproduct` (`iproduct`),
+  CONSTRAINT `t_product_pics_ibfk_1` FOREIGN KEY (`iproduct`) REFERENCES `t_product` (`iproduct`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_product_pics:~0 rows (대략적) 내보내기
+
+-- 테이블 db_even_last_3.t_refund 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_refund` (
+  `irefund` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idetails` int(10) unsigned NOT NULL,
+  `contents` varchar(200) NOT NULL,
+  `refund_cnt` int(11) NOT NULL,
+  `refund_price` int(11) NOT NULL,
+  `complete_fl` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`irefund`),
+  KEY `iproduct` (`idetails`),
+  CONSTRAINT `t_refund_ibfk_1` FOREIGN KEY (`idetails`) REFERENCES `t_order_details` (`idetails`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_refund:~1 rows (대략적) 내보내기
+INSERT INTO `t_refund` (`irefund`, `idetails`, `contents`, `refund_cnt`, `refund_price`, `complete_fl`, `created_at`, `updated_at`) VALUES
+	(1, 78, '불량', 1, 10000, 0, '2024-01-25 16:49:01', NULL);
+
+-- 테이블 db_even_last_3.t_refund_pics 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_refund_pics` (
+  `irefund_pic` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `irefund` int(10) unsigned NOT NULL,
+  `refund_pic` varchar(2100) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`irefund_pic`),
+  KEY `irefund` (`irefund`),
+  CONSTRAINT `t_refund_pics_ibfk_1` FOREIGN KEY (`irefund`) REFERENCES `t_refund` (`irefund`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_refund_pics:~0 rows (대략적) 내보내기
+
+-- 테이블 db_even_last_3.t_review 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_review` (
+  `ireview` int(10) unsigned NOT NULL,
+  `iorder` int(10) unsigned NOT NULL,
+  `iproduct` int(10) unsigned NOT NULL,
+  `iuser` int(10) unsigned NOT NULL,
+  `req_review_pic` varchar(1000) DEFAULT NULL,
+  `contents` varchar(300) DEFAULT NULL,
+  `product_score` tinyint(5) unsigned NOT NULL DEFAULT 1,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ireview`),
+  UNIQUE KEY `iorder_iproduct_iuser` (`iorder`,`iproduct`,`iuser`),
+  KEY `iorder` (`iorder`),
+  KEY `iproduct` (`iproduct`),
+  KEY `FK_t_review_t_order_2` (`iuser`),
+  CONSTRAINT `FK_t_review_t_order` FOREIGN KEY (`iorder`) REFERENCES `t_order` (`iorder`),
+  CONSTRAINT `FK_t_review_t_order_2` FOREIGN KEY (`iuser`) REFERENCES `t_order` (`iuser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `t_review_ibfk_1` FOREIGN KEY (`ireview`) REFERENCES `t_order_details` (`idetails`),
+  CONSTRAINT `t_review_ibfk_3` FOREIGN KEY (`iproduct`) REFERENCES `t_order_details` (`iproduct`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_review:~8 rows (대략적) 내보내기
+INSERT INTO `t_review` (`ireview`, `iorder`, `iproduct`, `iuser`, `req_review_pic`, `contents`, `product_score`, `created_at`) VALUES
+	(1, 25, 1, 39, '상품1리뷰1대표사진', '상품1리뷰내용1', 1, '2024-01-25 14:47:39'),
+	(2, 7, 1, 39, '상품1리뷰2대표사진', '상품1리뷰내용2', 2, '2024-01-29 16:53:18'),
+	(3, 19, 1, 39, '상품1리뷰3대표사진', '상품1리뷰내용3', 4, '2024-01-29 16:53:40'),
+	(4, 28, 1, 39, '상품1리뷰4대표사진', '상품1리뷰내용4', 5, '2024-01-29 16:54:15'),
+	(5, 17, 1, 39, '상품1리뷰5대표사진', '상품1리뷰내용5', 4, '2024-01-29 16:54:32'),
+	(6, 4, 1, 39, '상품1리뷰6대표사진', '상품1리뷰내용6', 2, '2024-01-29 16:54:46'),
+	(7, 5, 1, 39, '상품1리뷰7대표사진', '상품1리뷰내용7', 1, '2024-01-29 16:54:59'),
+	(8, 8, 1, 39, '상품1리뷰8대표사진', '상품1리뷰내용8', 3, '2024-01-29 16:55:22');
+
+-- 테이블 db_even_last_3.t_review_pics 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_review_pics` (
+  `ireview_pic` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ireview` int(10) unsigned NOT NULL,
+  `review_pic` varchar(2500) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ireview_pic`),
+  KEY `ireview` (`ireview`),
+  CONSTRAINT `t_review_pics_ibfk_1` FOREIGN KEY (`ireview`) REFERENCES `t_review` (`ireview`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_review_pics:~8 rows (대략적) 내보내기
+INSERT INTO `t_review_pics` (`ireview_pic`, `ireview`, `review_pic`, `created_at`) VALUES
+	(1, 1, '리뷰1사진1', '2024-01-29 16:56:11'),
+	(2, 1, '리뷰1사진2', '2024-01-29 16:56:19'),
+	(3, 1, '리뷰1사진3', '2024-01-29 16:56:29'),
+	(4, 2, '리뷰2사진1', '2024-01-29 16:56:38'),
+	(5, 2, '리뷰2사진2', '2024-01-29 16:56:43'),
+	(6, 2, '리뷰2사진3', '2024-01-29 16:56:49'),
+	(7, 3, '리뷰3사진1', '2024-01-29 16:56:58'),
+	(8, 3, '리뷰3사진2', '2024-01-29 16:57:07');
+
+-- 테이블 db_even_last_3.t_signup_clause 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_signup_clause` (
+  `iclause` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `contents` text NOT NULL,
+  `required` char(1) NOT NULL CHECK (`required` in ('Y','N')),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`iclause`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_signup_clause:~3 rows (대략적) 내보내기
+INSERT INTO `t_signup_clause` (`iclause`, `title`, `contents`, `required`, `created_at`, `updated_at`) VALUES
+	(1, '전자상거래(인터넷사이버몰) 표준약관', '제1조(목적) 이 약관은 (주)나나빛(전자상거래 사업자)가 운영하는 나나빛 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.\r\n\r\n  ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」\r\n\r\n제2조(정의)\r\n\r\n  ① “몰”이란 (주)나나빛이 재화 또는 용역(이하 “재화 등”이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 사이버몰을 운영하는 사업자의 의미로도 사용합니다.\r\n\r\n  ② “이용자”란 “몰”에 접속하여 이 약관에 따라 “몰”이 제공하는 서비스를 받는 회원 및 비회원을 말합니다.\r\n\r\n  ③ ‘회원’이라 함은 “몰”에 회원등록을 한 자로서, 계속적으로 “몰”이 제공하는 서비스를 이용할 수 있는 자를 말합니다.\r\n\r\n  ④ ‘비회원’이라 함은 회원에 가입하지 않고 “몰”이 제공하는 서비스를 이용하는 자를 말합니다.\r\n\r\n제3조 (약관 등의 명시와 설명 및 개정) \r\n\r\n  ① “몰”은 이 약관의 내용과 상호 및 대표자 성명, 영업소 소재지 주소(소비자의 불만을 처리할 수 있는 곳의 주소를 포함), 전화번호․모사전송번호․전자우편주소, 사업자등록번호, 통신판매업 신고번호, 개인정보관리책임자등을 이용자가 쉽게 알 수 있도록 00 사이버몰의 초기 서비스화면(전면)에 게시합니다. 다만, 약관의 내용은 이용자가 연결화면을 통하여 볼 수 있도록 할 수 있습니다.\r\n\r\n  ② “몰은 이용자가 약관에 동의하기에 앞서 약관에 정하여져 있는 내용 중 청약철회․배송책임․환불조건 등과 같은 중요한 내용을 이용자가 이해할 수 있도록 별도의 연결화면 또는 팝업화면 등을 제공하여 이용자의 확인을 구하여야 합니다.\r\n\r\n  ③ “몰”은 「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「전자문서 및 전자거래기본법」, 「전자금융거래법」, 「전자서명법」, 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」, 「방문판매 등에 관한 법률」, 「소비자기본법」 등 관련 법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.\r\n\r\n  ④ “몰”이 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 몰의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 공지합니다. 다만, 이용자에게 불리하게 약관내용을 변경하는 경우에는 최소한 30일 이상의 사전 유예기간을 두고 공지합니다.  이 경우 "몰“은 개정 전 내용과 개정 후 내용을 명확하게 비교하여 이용자가 알기 쉽도록 표시합니다. \r\n\r\n  ⑤ “몰”이 약관을 개정할 경우에는 그 개정약관은 그 적용일자 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에 대해서는 개정 전의 약관조항이 그대로 적용됩니다. 다만 이미 계약을 체결한 이용자가 개정약관 조항의 적용을 받기를 원하는 뜻을 제3항에 의한 개정약관의 공지기간 내에 “몰”에 송신하여 “몰”의 동의를 받은 경우에는 개정약관 조항이 적용됩니다.\r\n\r\n  ⑥ 이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 전자상거래 등에서의 소비자보호에 관한 법률, 약관의 규제 등에 관한 법률, 공정거래위원회가 정하는 전자상거래 등에서의 소비자 보호지침 및 관계법령 또는 상관례에 따릅니다.\r\n\r\n제4조(서비스의 제공 및 변경) \r\n\r\n  ① “몰”은 다음과 같은 업무를 수행합니다.\r\n\r\n    1. 재화 또는 용역에 대한 정보 제공 및 구매계약의 체결\r\n    2. 구매계약이 체결된 재화 또는 용역의 배송\r\n    3. 기타 “몰”이 정하는 업무\r\n\r\n  ② “몰”은 재화 또는 용역의 품절 또는 기술적 사양의 변경 등의 경우에는 장차 체결되는 계약에 의해 제공할 재화 또는 용역의 내용을 변경할 수 있습니다. 이 경우에는 변경된 재화 또는 용역의 내용 및 제공일자를 명시하여 현재의 재화 또는 용역의 내용을 게시한 곳에 즉시 공지합니다.\r\n\r\n  ③ “몰”이 제공하기로 이용자와 계약을 체결한 서비스의 내용을 재화등의 품절 또는 기술적 사양의 변경 등의 사유로 변경할 경우에는 그 사유를 이용자에게 통지 가능한 주소로 즉시 통지합니다.\r\n\r\n  ④ 전항의 경우 “몰”은 이로 인하여 이용자가 입은 손해를 배상합니다. 다만, “몰”이 고의 또는 과실이 없음을 입증하는 경우에는 그러하지 아니합니다.\r\n\r\n제5조(서비스의 중단) \r\n\r\n  ① “몰”은 컴퓨터 등 정보통신설비의 보수점검․교체 및 고장, 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을 일시적으로 중단할 수 있습니다.\r\n\r\n  ② “몰”은 제1항의 사유로 서비스의 제공이 일시적으로 중단됨으로 인하여 이용자 또는 제3자가 입은 손해에 대하여 배상합니다. 단, “몰”이 고의 또는 과실이 없음을 입증하는 경우에는 그러하지 아니합니다.\r\n\r\n  ③ 사업종목의 전환, 사업의 포기, 업체 간의 통합 등의 이유로 서비스를 제공할 수 없게 되는 경우에는 “몰”은 제8조에 정한 방법으로 이용자에게 통지하고 당초 “몰”에서 제시한 조건에 따라 소비자에게 보상합니다. 다만, “몰”이 보상기준 등을 고지하지 아니한 경우에는 이용자들의 마일리지 또는 적립금 등을 “몰”에서 통용되는 통화가치에 상응하는 현물 또는 현금으로 이용자에게 지급합니다.\r\n\r\n제6조(회원가입) \r\n\r\n  ① 이용자는 “몰”이 정한 가입 양식에 따라 회원정보를 기입한 후 이 약관에 동의한다는 의사표시를 함으로서 회원가입을 신청합니다.\r\n\r\n  ② “몰”은 제1항과 같이 회원으로 가입할 것을 신청한 이용자 중 다음 각 호에 해당하지 않는 한 회원으로 등록합니다.\r\n\r\n    1. 가입신청자가 이 약관 제7조제3항에 의하여 이전에 회원자격을 상실한 적이 있는 경우, 다만 제7조제3항에 의한 회원자격 상실 후 3년이 경과한 자로서 “몰”의 회원재가입 승낙을 얻은 경우에는 예외로 한다.\r\n    2. 등록 내용에 허위, 기재누락, 오기가 있는 경우\r\n    3. 기타 회원으로 등록하는 것이 “몰”의 기술상 현저히 지장이 있다고 판단되는 경우\r\n\r\n  ③ 회원가입계약의 성립 시기는 “몰”의 승낙이 회원에게 도달한 시점으로 합니다.\r\n\r\n  ④ 회원은 회원가입 시 등록한 사항에 변경이 있는 경우, 상당한 기간 이내에 “몰”에 대하여 회원정보 수정 등의 방법으로 그 변경사항을 알려야 합니다.\r\n\r\n제7조(회원 탈퇴 및 자격 상실 등) \r\n\r\n  ① 회원은 “몰”에 언제든지 탈퇴를 요청할 수 있으며 “몰”은 즉시 회원탈퇴를 처리합니다.\r\n\r\n  ② 회원이 다음 각 호의 사유에 해당하는 경우, “몰”은 회원자격을 제한 및 정지시킬 수 있습니다.\r\n\r\n    1. 가입 신청 시에 허위 내용을 등록한 경우\r\n    2. “몰”을 이용하여 구입한 재화 등의 대금, 기타 “몰”이용에 관련하여 회원이 부담하는 채무를 기일에 지급하지 않는 경우\r\n    3. 다른 사람의 “몰” 이용을 방해하거나 그 정보를 도용하는 등 전자상거래 질서를 위협하는 경우\r\n    4. “몰”을 이용하여 법령 또는 이 약관이 금지하거나 공서양속에 반하는 행위를 하는 경우\r\n\r\n  ③ “몰”이 회원 자격을 제한․정지 시킨 후, 동일한 행위가 2회 이상 반복되거나 30일 이내에 그 사유가 시정되지 아니하는 경우 “몰”은 회원자격을 상실시킬 수 있습니다.\r\n\r\n  ④ “몰”이 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 이를 통지하고, 회원등록 말소 전에 최소한 30일 이상의 기간을 정하여 소명할 기회를 부여합니다.\r\n\r\n제8조(회원에 대한 통지)\r\n\r\n  ① “몰”이 회원에 대한 통지를 하는 경우, 회원이 “몰”과 미리 약정하여 지정한 전자우편 주소로 할 수 있습니다.\r\n\r\n  ② “몰”은 불특정다수 회원에 대한 통지의 경우 1주일이상 “몰” 게시판에 게시함으로서 개별 통지에 갈음할 수 있습니다. 다만, 회원 본인의 거래와 관련하여 중대한 영향을 미치는 사항에 대하여는 개별통지를 합니다.\r\n\r\n제9조(구매신청 및 개인정보 제공 동의 등) \r\n\r\n  ① “몰”이용자는 “몰”상에서 다음 또는 이와 유사한 방법에 의하여 구매를 신청하며, “몰”은 이용자가 구매신청을 함에 있어서 다음의 각 내용을 알기 쉽게 제공하여야 합니다. \r\n      1. 재화 등의 검색 및 선택\r\n      2. 받는 사람의 성명, 주소, 전화번호, 전자우편주소(또는 이동전화번호) 등의 입력\r\n      3. 약관내용, 청약철회권이 제한되는 서비스, 배송료․설치비 등의 비용부담과 관련한 내용에 대한 확인\r\n      4. 이 약관에 동의하고 위 3.호의 사항을 확인하거나 거부하는 표시\r\n         (예, 마우스 클릭)\r\n      5. 재화등의 구매신청 및 이에 관한 확인 또는 “몰”의 확인에 대한 동의\r\n      6. 결제방법의 선택\r\n\r\n  ② “몰”이 제3자에게 구매자 개인정보를 제공할 필요가 있는 경우 1) 개인정보를 제공받는 자, 2)개인정보를 제공받는 자의 개인정보 이용목적, 3) 제공하는 개인정보의 항목, 4) 개인정보를 제공받는 자의 개인정보 보유 및 이용기간을 구매자에게 알리고 동의를 받아야 합니다. (동의를 받은 사항이 변경되는 경우에도 같습니다.)\r\n\r\n\r\n  ③ “몰”이 제3자에게 구매자의 개인정보를 취급할 수 있도록 업무를 위탁하는 경우에는 1) 개인정보 취급위탁을 받는 자, 2) 개인정보 취급위탁을 하는 업무의 내용을 구매자에게 알리고 동의를 받아야 합니다. (동의를 받은 사항이 변경되는 경우에도 같습니다.) 다만, 서비스제공에 관한 계약이행을 위해 필요하고 구매자의 편의증진과 관련된 경우에는 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」에서 정하고 있는 방법으로 개인정보 취급방침을 통해 알림으로써 고지절차와 동의절차를 거치지 않아도 됩니다.\r\n\r\n\r\n제10조 (계약의 성립)\r\n\r\n  ①  “몰”은 제9조와 같은 구매신청에 대하여 다음 각 호에 해당하면 승낙하지 않을 수 있습니다. 다만, 미성년자와 계약을 체결하는 경우에는 법정대리인의 동의를 얻지 못하면 미성년자 본인 또는 법정대리인이 계약을 취소할 수 있다는 내용을 고지하여야 합니다.\r\n\r\n    1. 신청 내용에 허위, 기재누락, 오기가 있는 경우\r\n    2. 미성년자가 담배, 주류 등 청소년보호법에서 금지하는 재화 및 용역을 구매하는 경우\r\n    3. 기타 구매신청에 승낙하는 것이 “몰” 기술상 현저히 지장이 있다고 판단하는 경우\r\n\r\n  ② “몰”의 승낙이 제12조제1항의 수신확인통지형태로 이용자에게 도달한 시점에 계약이 성립한 것으로 봅니다.\r\n\r\n  ③ “몰”의 승낙의 의사표시에는 이용자의 구매 신청에 대한 확인 및 판매가능 여부, 구매신청의 정정 취소 등에 관한 정보 등을 포함하여야 합니다.\r\n\r\n제11조(지급방법) “몰”에서 구매한 재화 또는 용역에 대한 대금지급방법은 다음 각 호의 방법중 가용한 방법으로 할 수 있습니다. 단, “몰”은 이용자의 지급방법에 대하여 재화 등의 대금에 어떠한 명목의 수수료도  추가하여 징수할 수 없습니다.\r\n\r\n    1. 폰뱅킹, 인터넷뱅킹, 메일 뱅킹 등의 각종 계좌이체 \r\n    2. 선불카드, 직불카드, 신용카드 등의 각종 카드 결제\r\n    3. 온라인무통장입금\r\n    4. 전자화폐에 의한 결제\r\n    5. 수령 시 대금지급\r\n    6. 마일리지 등 “몰”이 지급한 포인트에 의한 결제\r\n    7. “몰”과 계약을 맺었거나 “몰”이 인정한 상품권에 의한 결제  \r\n    8. 기타 전자적 지급 방법에 의한 대금 지급 등\r\n\r\n제12조(수신확인통지․구매신청 변경 및 취소)\r\n\r\n  ① “몰”은 이용자의 구매신청이 있는 경우 이용자에게 수신확인통지를 합니다.\r\n\r\n  ② 수신확인통지를 받은 이용자는 의사표시의 불일치 등이 있는 경우에는 수신확인통지를 받은 후 즉시 구매신청 변경 및 취소를 요청할 수 있고 “몰”은 배송 전에 이용자의 요청이 있는 경우에는 지체 없이 그 요청에 따라 처리하여야 합니다. 다만 이미 대금을 지불한 경우에는 제15조의 청약철회 등에 관한 규정에 따릅니다.\r\n\r\n제13조(재화 등의 공급)\r\n\r\n  ① “몰”은 이용자와 재화 등의 공급시기에 관하여 별도의 약정이 없는 이상, 이용자가 청약을 한 날부터 7일 이내에 재화 등을 배송할 수 있도록 주문제작, 포장 등 기타의 필요한 조치를 취합니다. 다만, “몰”이 이미 재화 등의 대금의 전부 또는 일부를 받은 경우에는 대금의 전부 또는 일부를 받은 날부터 3영업일 이내에 조치를 취합니다.  이때 “몰”은 이용자가 재화 등의 공급 절차 및 진행 사항을 확인할 수 있도록 적절한 조치를 합니다.\r\n\r\n  ② “몰”은 이용자가 구매한 재화에 대해 배송수단, 수단별 배송비용 부담자, 수단별 배송기간 등을 명시합니다. 만약 “몰”이 약정 배송기간을 초과한 경우에는 그로 인한 이용자의 손해를 배상하여야 합니다. 다만 “몰”이 고의․과실이 없음을 입증한 경우에는 그러하지 아니합니다.\r\n\r\n제14조(환급) “몰”은 이용자가 구매신청한 재화 등이 품절 등의 사유로 인도 또는 제공을 할 수 없을 때에는 지체 없이 그 사유를 이용자에게 통지하고 사전에 재화 등의 대금을 받은 경우에는 대금을 받은 날부터 3영업일 이내에 환급하거나 환급에 필요한 조치를 취합니다.\r\n\r\n제15조(청약철회 등)\r\n\r\n  ① “몰”과 재화등의 구매에 관한 계약을 체결한 이용자는 「전자상거래 등에서의 소비자보호에 관한 법률」 제13조 제2항에 따른 계약내용에 관한 서면을 받은 날(그 서면을 받은 때보다 재화 등의 공급이 늦게 이루어진 경우에는 재화 등을 공급받거나 재화 등의 공급이 시작된 날을 말합니다)부터 7일 이내에는 청약의 철회를 할 수 있습니다. 다만, 청약철회에 관하여 「전자상거래 등에서의 소비자보호에 관한 법률」에 달리 정함이 있는 경우에는 동 법 규정에 따릅니다. \r\n\r\n  ② 이용자는 재화 등을 배송 받은 경우 다음 각 호의 1에 해당하는 경우에는 반품 및 교환을 할 수 없습니다.\r\n\r\n    1. 이용자에게 책임 있는 사유로 재화 등이 멸실 또는 훼손된 경우(다만, 재화 등의 내용을 확인하기 위하여 포장 등을 훼손한 경우에는 청약철회를 할 수 있습니다)\r\n    2. 이용자의 사용 또는 일부 소비에 의하여 재화 등의 가치가 현저히 감소한 경우\r\n    3. 시간의 경과에 의하여 재판매가 곤란할 정도로 재화등의 가치가 현저히 감소한 경우\r\n    4. 같은 성능을 지닌 재화 등으로 복제가 가능한 경우 그 원본인 재화 등의 포장을 훼손한 경우\r\n\r\n  ③ 제2항제2호 내지 제4호의 경우에 “몰”이 사전에 청약철회 등이 제한되는 사실을 소비자가 쉽게 알 수 있는 곳에 명기하거나 시용상품을 제공하는 등의 조치를 하지 않았다면 이용자의 청약철회 등이 제한되지 않습니다.\r\n\r\n  ④ 이용자는 제1항 및 제2항의 규정에 불구하고 재화 등의 내용이 표시·광고 내용과 다르거나 계약내용과 다르게 이행된 때에는 당해 재화 등을 공급받은 날부터 3월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 청약철회 등을 할 수 있습니다.\r\n\r\n제16조(청약철회 등의 효과)\r\n\r\n  ① “몰”은 이용자로부터 재화 등을 반환받은 경우 3영업일 이내에 이미 지급받은 재화 등의 대금을 환급합니다. 이 경우 “몰”이 이용자에게 재화등의 환급을 지연한때에는 그 지연기간에 대하여 「전자상거래 등에서의 소비자보호에 관한 법률 시행령」제21조의2에서 정하는 지연이자율을 곱하여 산정한 지연이자를 지급합니다.\r\n\r\n  ② “몰”은 위 대금을 환급함에 있어서 이용자가 신용카드 또는 전자화폐 등의 결제수단으로 재화 등의 대금을 지급한 때에는 지체 없이 당해 결제수단을 제공한 사업자로 하여금 재화 등의 대금의 청구를 정지 또는 취소하도록 요청합니다.\r\n\r\n  ③ 청약철회 등의 경우 공급받은 재화 등의 반환에 필요한 비용은 이용자가 부담합니다. “몰”은 이용자에게 청약철회 등을 이유로 위약금 또는 손해배상을 청구하지 않습니다. 다만 재화 등의 내용이 표시·광고 내용과 다르거나 계약내용과 다르게 이행되어 청약철회 등을 하는 경우 재화 등의 반환에 필요한 비용은 “몰”이 부담합니다.\r\n\r\n  ④ 이용자가 재화 등을 제공받을 때 발송비를 부담한 경우에 “몰”은 청약철회 시 그 비용을  누가 부담하는지를 이용자가 알기 쉽도록 명확하게 표시합니다.\r\n\r\n제17조(개인정보보호)\r\n\r\n  ① “몰”은 이용자의 개인정보 수집시 서비스제공을 위하여 필요한 범위에서 최소한의 개인정보를 수집합니다. \r\n\r\n  ② “몰”은 회원가입시 구매계약이행에 필요한 정보를 미리 수집하지 않습니다. 다만, 관련 법령상 의무이행을 위하여 구매계약 이전에 본인확인이 필요한 경우로서 최소한의 특정 개인정보를 수집하는 경우에는 그러하지 아니합니다.\r\n\r\n  ③ “몰”은 이용자의 개인정보를 수집·이용하는 때에는 당해 이용자에게 그 목적을 고지하고 동의를 받습니다. \r\n\r\n  ④ “몰”은 수집된 개인정보를 목적외의 용도로 이용할 수 없으며, 새로운 이용목적이 발생한 경우 또는 제3자에게 제공하는 경우에는 이용·제공단계에서 당해 이용자에게 그 목적을 고지하고 동의를 받습니다. 다만, 관련 법령에 달리 정함이 있는 경우에는 예외로 합니다.\r\n\r\n  ⑤ “몰”이 제2항과 제3항에 의해 이용자의 동의를 받아야 하는 경우에는 개인정보관리 책임자의 신원(소속, 성명 및 전화번호, 기타 연락처), 정보의 수집목적 및 이용목적, 제3자에 대한 정보제공 관련사항(제공받은자, 제공목적 및 제공할 정보의 내용) 등 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 제22조제2항이 규정한 사항을 미리 명시하거나 고지해야 하며 이용자는 언제든지 이 동의를 철회할 수 있습니다.\r\n\r\n  ⑥ 이용자는 언제든지 “몰”이 가지고 있는 자신의 개인정보에 대해 열람 및 오류정정을 요구할 수 있으며 “몰”은 이에 대해 지체 없이 필요한 조치를 취할 의무를 집니다. 이용자가 오류의 정정을 요구한 경우에는 “몰”은 그 오류를 정정할 때까지 당해 개인정보를 이용하지 않습니다.\r\n \r\n  ⑦ “몰”은 개인정보 보호를 위하여 이용자의 개인정보를 취급하는 자를  최소한으로 제한하여야 하며 신용카드, 은행계좌 등을 포함한 이용자의 개인정보의 분실, 도난, 유출, 동의 없는 제3자 제공, 변조 등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.\r\n\r\n  ⑧ “몰” 또는 그로부터 개인정보를 제공받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한 때에는 당해 개인정보를 지체 없이 파기합니다.\r\n\r\n  ⑨ “몰”은 개인정보의 수집·이용·제공에 관한 동의 란을 미리 선택한 것으로 설정해두지 않습니다. 또한 개인정보의 수집·이용·제공에 관한 이용자의 동의거절시 제한되는 서비스를 구체적으로 명시하고, 필수수집항목이 아닌 개인정보의 수집·이용·제공에 관한 이용자의 동의 거절을 이유로 회원가입 등 서비스 제공을 제한하거나 거절하지 않습니다.\r\n\r\n제18조(“몰“의 의무)\r\n\r\n  ① “몰”은 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하지 않으며 이 약관이 정하는 바에 따라 지속적이고, 안정적으로 재화․용역을 제공하는데 최선을 다하여야 합니다.\r\n\r\n  ② “몰”은 이용자가 안전하게 인터넷 서비스를 이용할 수 있도록 이용자의 개인정보(신용정보 포함)보호를 위한 보안 시스템을 갖추어야 합니다.\r\n\r\n  ③ “몰”이 상품이나 용역에 대하여 「표시․광고의 공정화에 관한 법률」 제3조 소정의 부당한 표시․광고행위를 함으로써 이용자가 손해를 입은 때에는 이를 배상할 책임을 집니다.\r\n\r\n  ④ “몰”은 이용자가 원하지 않는 영리목적의 광고성 전자우편을 발송하지 않습니다.\r\n\r\n제19조(회원의 ID 및 비밀번호에 대한 의무)\r\n\r\n  ① 제17조의 경우를 제외한 ID와 비밀번호에 관한 관리책임은 회원에게 있습니다.\r\n\r\n  ② 회원은 자신의 ID 및 비밀번호를 제3자에게 이용하게 해서는 안됩니다.\r\n\r\n  ③ 회원이 자신의 ID 및 비밀번호를 도난당하거나 제3자가 사용하고 있음을 인지한 경우에는 바로 “몰”에 통보하고 “몰”의 안내가 있는 경우에는 그에 따라야 합니다.\r\n\r\n제20조(이용자의 의무) 이용자는 다음 행위를 하여서는 안 됩니다.\r\n\r\n    1. 신청 또는 변경시 허위 내용의 등록\r\n    2. 타인의 정보 도용\r\n    3. “몰”에 게시된 정보의 변경\r\n    4. “몰”이 정한 정보 이외의 정보(컴퓨터 프로그램 등) 등의 송신 또는 게시\r\n    5. “몰” 기타 제3자의 저작권 등 지적재산권에 대한 침해\r\n    6. “몰” 기타 제3자의 명예를 손상시키거나 업무를 방해하는 행위\r\n    7. 외설 또는 폭력적인 메시지, 화상, 음성, 기타 공서양속에 반하는 정보를 몰에 공개 또는 게시하는 행위\r\n\r\n제21조(연결“몰”과 피연결“몰” 간의 관계)\r\n\r\n  ① 상위 “몰”과 하위 “몰”이 하이퍼링크(예: 하이퍼링크의 대상에는 문자, 그림 및 동화상 등이 포함됨)방식 등으로 연결된 경우, 전자를 연결 “몰”(웹 사이트)이라고 하고 후자를 피연결 “몰”(웹사이트)이라고 합니다.\r\n\r\n  ② 연결“몰”은 피연결“몰”이 독자적으로 제공하는 재화 등에 의하여 이용자와 행하는 거래에 대해서 보증 책임을 지지 않는다는 뜻을 연결“몰”의 초기화면 또는 연결되는 시점의 팝업화면으로 명시한 경우에는 그 거래에 대한 보증 책임을 지지 않습니다.\r\n\r\n제22조(저작권의 귀속 및 이용제한)\r\n\r\n  ① “몰“이 작성한 저작물에 대한 저작권 기타 지적재산권은 ”몰“에 귀속합니다.\r\n\r\n  ② 이용자는 “몰”을 이용함으로써 얻은 정보 중 “몰”에게 지적재산권이 귀속된 정보를 “몰”의 사전 승낙 없이 복제, 송신, 출판, 배포, 방송 기타 방법에 의하여 영리목적으로 이용하거나 제3자에게 이용하게 하여서는 안됩니다.\r\n\r\n  ③ “몰”은 약정에 따라 이용자에게 귀속된 저작권을 사용하는 경우 당해 이용자에게 통보하여야 합니다.\r\n\r\n제23조(분쟁해결)\r\n\r\n  ① “몰”은 이용자가 제기하는 정당한 의견이나 불만을 반영하고 그 피해를 보상처리하기 위하여 피해보상처리기구를 설치․운영합니다.\r\n\r\n  ② “몰”은 이용자로부터 제출되는 불만사항 및 의견은 우선적으로 그 사항을 처리합니다. 다만, 신속한 처리가 곤란한 경우에는 이용자에게 그 사유와 처리일정을 즉시 통보해 드립니다.\r\n\r\n  ③ “몰”과 이용자 간에 발생한 전자상거래 분쟁과 관련하여 이용자의 피해구제신청이 있는 경우에는 공정거래위원회 또는 시·도지사가 의뢰하는 분쟁조정기관의 조정에 따를 수 있습니다.\r\n\r\n제24조(재판권 및 준거법)\r\n\r\n  ① “몰”과 이용자 간에 발생한 전자상거래 분쟁에 관한 소송은 제소 당시의 이용자의 주소에 의하고, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자의 경우에는 민사소송법상의 관할법원에 제기합니다.\r\n\r\n  ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.', 'Y', '2024-01-15 15:32:43', NULL),
+	(2, '개인 정보 수집 및 이용', '1. 수집하는 개인 정보의 항목 및 수집 방법\r\n\r\n가. 수집 항목\r\n\r\n필수 정보: 성명, 주소, 전화번호, 이메일 주소, 결제 정보 등\r\n선택 정보: 관심 상품, 서비스 이용 기록, 쿠키, IP 주소 등\r\n나. 수집 방법\r\n\r\n웹사이트 회원가입, 이벤트 응모, 상담 요청, 서비스 이용, 쿠키 등\r\n2. 개인 정보의 수집 및 이용 목적\r\n\r\n가. 주문 처리 및 배송\r\n나. 서비스 제공 및 계약 이행\r\n다. 이벤트 참여 및 경품 배송\r\n라. 마케팅 및 광고에 활용\r\n마. 서비스 개선 및 고객 의견 조사\r\n바. 법령 및 회사 정책에 따른 목적\r\n3. 개인 정보의 보유 및 이용 기간\r\n\r\n가. 회원정보: 회원 탈퇴 시 혹은 미사용 기간 종료 시까지\r\n나. 주문 정보: 거래 완료 후 재화/서비스 공급 기간 및 법적 의무 이행 완료 후까지\r\n4. 개인 정보의 제3자 제공\r\n\r\n가. 원칙적으로 개인 정보를 제3자에게 제공하지 않습니다.\r\n나. 다만, 사용자 동의, 법률적 의무 이행, 서비스 제공 등 필요한 경우에만 제공됩니다.\r\n5. 이용자의 권리와 의무\r\n\r\n가. 개인 정보 열람, 정정, 삭제 요청 가능\r\n나. 개인 정보 제공 동의 철회 가능\r\n다. 정확한 개인 정보 제공이 사용자의 책임임을 인지\r\n6. 개인 정보의 안전성 확보 조치\r\n\r\n가. 개인 정보 암호화 및 보안 프로토콜 적용\r\n나. 주기적인 보안 감사 및 점검 실시\r\n다. 개인 정보 처리 담당자 교육 및 감시\r\n7. 개인 정보 관리 책임자\r\n\r\n가. 책임자: [이름]\r\n나. 이메일: [이메일 주소]\r\n다. 전화번호: [전화번호]\r\n8. 개정 및 고지\r\n\r\n가. 본 약관은 법령, 정책, 서비스 변경에 따라 수정될 수 있으며, 변경 시 사전 고지 후 적용됩니다.', 'Y', '2024-01-15 15:30:52', NULL),
+	(3, '선택-개인정보 수집 및 이용 동의', '나나빛 및 제휴 서비스의 이벤트・혜택 등의 정보 발송을 위해 아이디(아이디 식별값 포함), 휴대전화번호(문자), 이메일주소를 수집합니다.\r\n\r\n아이디(아이디 식별값 포함), 휴대전화번호 및 이메일주소는 서비스 제공을 위한 필수 수집항목으로서 회원 가입 기간 동안 보관하나, 이벤트 혜택 정보 수신 동의를 철회하시면 본 목적으로의 개인정보 처리는 중지됩니다.\r\n정보주체는 개인정보 수집 및 이용 동의를 거부하실 수 있으며, 미동의 시에도 서비스 이용은 가능합니다.', 'N', '2024-01-15 15:31:21', NULL);
+
+-- 테이블 db_even_last_3.t_user 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_user` (
+  `iuser` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` varchar(20) NOT NULL,
+  `upw` varchar(2100) NOT NULL,
+  `nm` varchar(20) NOT NULL,
+  `phone_number` char(13) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `unregister_fl` tinyint(4) NOT NULL DEFAULT 0,
+  `role` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`iuser`),
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_user:~36 rows (대략적) 내보내기
+INSERT INTO `t_user` (`iuser`, `uid`, `upw`, `nm`, `phone_number`, `email`, `unregister_fl`, `role`, `created_at`, `updated_at`) VALUES
+	(1, 'ADMIN', '123123', '관리자', '010-1010-1010', 'user@naver.com', 0, 1, '2024-01-10 15:10:21', '2024-01-10 15:10:29'),
+	(2, 'in', 'sB9+%oZf0yYV', 'Ramelet', '806-299-5760', 'mramelet1@artisteer.com', 0, 0, '2024-01-11 09:28:56', NULL),
+	(3, 'id', 'oU0%w|Lp', 'Kuhnwald', '108-233-2780', 'ekuhnwald2@hostgator.com', 0, 0, '2024-01-11 09:28:56', NULL),
+	(4, 'suspendisse', 'yG4\'pe|nD4{6', 'Bone', '434-821-7163', 'mboneg@unblog.fr', 0, 0, '2024-01-11 09:29:22', '2024-01-12 09:17:25'),
+	(5, 'imperdiet', 'kW9(o!9mh0|c/o1j', 'Noe', '763-835-9540', 'mnoe4@furl.net', 0, 0, '2024-01-11 09:29:22', NULL),
+	(6, 'tempus', 'hB2<S)0Y~#', 'Strathman', '738-788-1791', 'fstrathman5@google.nl', 0, 0, '2024-01-11 09:29:22', NULL),
+	(7, 'est', 'vJ9&t8gRWTJ+', 'Helversen', '836-658-8304', 'chelversen6@ovh.net', 0, 0, '2024-01-11 09:29:22', NULL),
+	(8, 'mi', 'dV9%>MFHoacFH*B', 'Origin', '197-613-1401', 'corigin7@angelfire.com', 0, 0, '2024-01-11 09:29:22', NULL),
+	(9, 'elementum', 'mP2+nj!t9T9?', 'Lathleiffure', '206-906-6666', 'tlathleiffure8@nsw.gov.au', 0, 0, '2024-01-11 09:29:22', NULL),
+	(10, 'justo', 'pL3@K2We1R_R', 'Soloway', '197-414-9101', 'asoloway9@stumbleupon.com', 0, 0, '2024-01-11 09:29:22', NULL),
+	(11, 'dui', 'xF5%JY/8nqIOGsO|', 'Beggin', '387-742-6965', 'nbeggina@berkeley.edu', 0, 0, '2024-01-11 09:29:22', NULL),
+	(12, 'facilisi', 'rN3>8fKM=7Q', 'Cranmer', '459-542-9833', 'lcranmerb@squarespace.com', 0, 0, '2024-01-11 09:29:22', NULL),
+	(13, 'luctus', 'wQ3`Y$JEmp80tY~', 'Screase', '642-240-3057', 'rscreasec@blogspot.com', 0, 0, '2024-01-11 09:29:22', NULL),
+	(14, 'quam', 'rW5@a76*v?nz}', 'Schankelborg', '364-243-5461', 'lschankelborgd@pagesperso-orange.fr', 0, 0, '2024-01-11 09:29:22', NULL),
+	(15, 'iaculis', 'cH0*x3jL$', 'Faragan', '725-267-4703', 'efaragane@blogs.com', 0, 0, '2024-01-11 09:29:22', NULL),
+	(16, 'pellentesque', 'hJ6.lh8+sq`Sw', 'Bartomeu', '134-708-8901', 'bbartomeuf@blinklist.com', 0, 0, '2024-01-11 09:29:22', NULL),
+	(17, 'hendrerit', 'fN9<tt,lY{oG#I?', 'Carlett', '261-748-7848', 'ccarlett0@t-online.de', 0, 0, '2024-01-11 09:28:56', NULL),
+	(18, 'bottle123', '$2a$10$GsROGGtPUUDKz9g1uilxl.ujGe6RKKg/GkeaPRIHvoJ7HHWEetYqW', '테스트1', '010-5435-1524', 'green@green.com', 0, 0, '2024-01-22 16:02:44', NULL),
+	(19, 'winter123', '$2a$10$iP4uPa1253iVupOqv.1.ieEO91aaRNfkpuxZhjdkr3DHrlp3duwSe', '대대추', '010-5556-4445', 'cnsh@naver.com', 1, 0, '2024-01-22 16:10:44', '2024-01-25 17:10:41'),
+	(20, 'Test1234', '$2a$10$GjA20leATBgQZqG3L6dWrO410oV9xvuVOMSjbOuDnHfufIK/SM/ZG', 'themeing', '011-0947-7070', 'tpe@naver.com', 0, 0, '2024-01-22 16:46:20', NULL),
+	(21, 'thTTT1212', '$2a$10$cM5kpSL/jNNzv6Q7ddLUBeWSK.RsYAKTNYR47QKBUvlr14b/Rx6/W', 'themeing', '016-864-8760', 'themein@nave.com', 0, 0, '2024-01-23 18:39:25', NULL),
+	(22, 'thekmg112', '$2a$10$MCYdlipUBo3ooeniZx80K.tqG9GC/SpkuqsEo3CQA//fpN4XpJCFe', '김몽쉿', '010-5066-7733', '123@123.com', 0, 0, '2024-01-23 18:42:21', NULL),
+	(23, 'hubble', '$2a$10$MeX/9t4pubbkh0p5W1LBOuszbqKR/njrXhwa9blRFL4igmZsu31mS', '허블', '010-5571-6794', 'hubble@gmail.com', 0, 0, '2024-01-24 12:34:44', NULL),
+	(24, '12341234', '$2a$10$BFt/xRPln9k576ZVnG2j3utq8LNQkoE3utYbEo5.i7u9WDrbtE/zC', '123134', '010-5066-8989', 'themi@naver.com', 0, 0, '2024-01-24 15:53:39', NULL),
+	(25, 'theee1', '$2a$10$GjwFcm9x3KnelDIoKyqm1Ob6/JptwC6yR8xgsoJFchBCepo.u3wAS', '대대추', '011-5585-4973', 'theme@naver.com', 0, 0, '2024-01-25 14:15:20', NULL),
+	(26, 'themp21', '$2a$10$C6gwH6T1auNruZQ5QCSXB.flVdj3oDjsZor9578UkRWVO/RIoJSW2', '대리리', '010-5769-8888', 'th@naver.com', 0, 0, '2024-01-25 14:19:55', NULL),
+	(27, 'nam1234', '$2a$10$t1iRc197GL/Uzh.gYDoDF.FcFyxhrZSrCWn0/YuFJrlcn/hYzZvhC', '남건이', '011-058-5061', 'nam12@naver.com', 0, 0, '2024-01-25 14:45:18', NULL),
+	(28, 'nam11', '$2a$10$tksIcL5jdecBS22ZuW..Z.wGDazalAcV.rqkx36KqQ6GajmU8LRjy', '남건이', '016-034-8189', '123123@naver.com', 0, 0, '2024-01-25 15:30:43', NULL),
+	(29, 'tehfoqn11', '$2a$10$nmRSGstyvCCfnmshBhZyAOs4pDilakJmt4f.TJPtxyWEpV8yYtv8y', '대대추 ', '010-111-5555', 'themefi@naver.com', 0, 0, '2024-01-25 16:12:13', NULL),
+	(30, 'thioe123', '$2a$10$bmpOUWaZABURgPKSfk0u2.dI4dzqU9xdBqcSHGgUgEdjn7w6ErPJG', '대대추', '010-5555-1111', 'thejmei@naver.com', 0, 0, '2024-01-25 17:19:45', NULL),
+	(31, 'nnn111', '$2a$10$QxFGG8rlkz4bJB5Ybg4tbucn1uVcNRHFQmpNAnI20jKk0E8tm5J1e', '남건이', '010-0149-0596', 'nnnnnn@naver.com', 0, 0, '2024-01-25 17:27:30', NULL),
+	(32, 'zoak123', '$2a$10$0HcxHjbuReqBE.6TH6VTEO2X.otCiFduLhTvyIpMYel/XazMN6ZCi', '추노함', '010-8555-4444', 'efho@naver.com', 0, 0, '2024-01-25 17:28:34', NULL),
+	(33, 'thethe12', '$2a$10$XL4rJizfqmrqd75aHTx8Dend7y4fFxqH9QQmJNzUwJ2U3VF96kcom', '집가자', '010-4444-8888', 'qefwf@naver.com', 0, 0, '2024-01-25 17:46:27', NULL),
+	(34, 'nam12', '$2a$10$RQ50v.6AQsCq1HlZzyT5Iu/rfXnYYX6R40rH2nn9Fku6e..9aTJQy', '남', '010-805-4697', '123@naver.com', 0, 0, '2024-01-26 09:00:31', NULL),
+	(35, 'vieana1', '$2a$10$1djkMDenErTWVnN8RHhnSemLK.2J2y3K8x9Bq3rVQsXbX.5GRRmGG', '깅홍싱', '010-5077-8888', 'iehiofh@naver.com', 1, 0, '2024-01-29 09:44:49', '2024-01-29 10:02:33'),
+	(39, 'cccc1', '$2a$10$2mH/189U47m2wwUWwVzSfOVwr7fPF2EYz5t3Jax.9X3QCg0qyUe0G', '예성', '011-229-4022', 'dddd@naver.com', 0, 0, '2024-01-29 17:34:53', NULL);
+
+-- 테이블 db_even_last_3.t_user_agreements 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_user_agreements` (
+  `iclause` int(10) unsigned NOT NULL,
+  `iuser` int(10) unsigned NOT NULL,
+  `agreement` char(1) NOT NULL CHECK (`agreement` in ('Y','N')),
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`iclause`,`iuser`),
+  KEY `iuser` (`iuser`),
+  CONSTRAINT `t_user_agreements_ibfk_1` FOREIGN KEY (`iclause`) REFERENCES `t_signup_clause` (`iclause`),
+  CONSTRAINT `t_user_agreements_ibfk_2` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_user_agreements:~0 rows (대략적) 내보내기
+
+-- 테이블 db_even_last_3.t_user_child 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_user_child` (
+  `ichild` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iuser` int(10) unsigned NOT NULL,
+  `gender` char(1) NOT NULL CHECK (`gender` in ('M','W')),
+  `ichild_age` int(10) unsigned NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ichild`),
+  KEY `iuser` (`iuser`),
+  KEY `ichild_age` (`ichild_age`),
+  CONSTRAINT `t_user_child_ibfk_1` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`),
+  CONSTRAINT `t_user_child_ibfk_2` FOREIGN KEY (`ichild_age`) REFERENCES `t_child_age` (`ichild_age`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_user_child:~25 rows (대략적) 내보내기
+INSERT INTO `t_user_child` (`ichild`, `iuser`, `gender`, `ichild_age`, `created_at`, `updated_at`) VALUES
+	(1, 18, 'M', 2, '2024-01-22 16:02:44', NULL),
+	(4, 20, 'W', 4, '2024-01-22 16:46:20', NULL),
+	(5, 21, 'W', 4, '2024-01-23 18:39:25', NULL),
+	(6, 22, 'M', 4, '2024-01-23 18:42:21', NULL),
+	(7, 23, 'M', 1, '2024-01-24 12:34:44', NULL),
+	(8, 23, 'M', 4, '2024-01-24 12:34:44', NULL),
+	(9, 24, 'M', 3, '2024-01-24 15:53:39', NULL),
+	(10, 24, 'W', 2, '2024-01-24 15:53:39', NULL),
+	(11, 25, 'M', 4, '2024-01-25 14:15:20', NULL),
+	(12, 26, 'M', 4, '2024-01-25 14:19:55', NULL),
+	(13, 26, 'W', 1, '2024-01-25 14:19:55', NULL),
+	(14, 27, 'M', 4, '2024-01-25 14:45:18', NULL),
+	(15, 28, 'M', 4, '2024-01-25 15:30:43', NULL),
+	(16, 29, 'W', 4, '2024-01-25 16:12:13', NULL),
+	(17, 29, 'M', 2, '2024-01-25 16:12:13', NULL),
+	(18, 19, 'M', 3, '2024-01-25 17:10:41', NULL),
+	(19, 19, 'W', 2, '2024-01-25 17:10:41', NULL),
+	(20, 30, 'M', 3, '2024-01-25 17:19:45', NULL),
+	(21, 30, 'W', 2, '2024-01-25 17:19:45', NULL),
+	(22, 31, 'M', 4, '2024-01-25 17:27:30', NULL),
+	(23, 32, 'M', 3, '2024-01-25 17:28:34', NULL),
+	(24, 32, 'W', 2, '2024-01-25 17:28:34', NULL),
+	(25, 33, 'W', 2, '2024-01-25 17:46:27', NULL),
+	(26, 33, 'M', 1, '2024-01-25 17:46:27', NULL),
+	(27, 34, 'M', 4, '2024-01-26 09:00:31', NULL),
+	(28, 35, 'M', 2, '2024-01-29 09:44:49', NULL),
+	(29, 35, 'W', 3, '2024-01-29 09:44:49', NULL),
+	(34, 39, 'M', 4, '2024-01-29 17:34:53', NULL);
+
+-- 테이블 db_even_last_3.t_wish_list 구조 내보내기
+CREATE TABLE IF NOT EXISTS `t_wish_list` (
+  `iuser` int(10) unsigned NOT NULL,
+  `iproduct` int(10) unsigned NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`iuser`,`iproduct`),
+  KEY `iproduct` (`iproduct`),
+  KEY `iuser` (`iuser`),
+  CONSTRAINT `t_wish_list_ibfk_1` FOREIGN KEY (`iuser`) REFERENCES `t_user` (`iuser`),
+  CONSTRAINT `t_wish_list_ibfk_2` FOREIGN KEY (`iproduct`) REFERENCES `t_product` (`iproduct`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 테이블 데이터 db_even_last_3.t_wish_list:~1 rows (대략적) 내보내기
+INSERT INTO `t_wish_list` (`iuser`, `iproduct`, `created_at`) VALUES
+	(23, 1, '2024-01-29 09:47:16');
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
