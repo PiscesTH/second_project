@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -48,10 +45,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 //        }
         return new ResponseEntity<>(body, headers, status);
 */
+        BindingResult bindingResult = ex.getBindingResult();
+        List<ErrorResponse.ValidError> errors = bindingResult.getFieldErrors()
+                .stream()
+                .map(ErrorResponse.ValidError::putError)
+                .toList();
 
-        List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x-> x.getDefaultMessage()).toList();
-        String errStr = String.join(" / ", errors);
-        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, errStr);
+        return handleExceptionInternal(CommonErrorCode.INVALID_PARAMETER, errors);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -73,24 +73,36 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     public ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode) {
-        return handleExceptionInternal(errorCode, null);
+        return handleExceptionInternal(errorCode, errorCode.getMessage());
     }
 
     public ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode, String message) {
         return ResponseEntity.status(errorCode.getHttpStatus())
                 .body(message == null ?
                         makeErrorResponse(errorCode)
-                        : makeErrorResponse(errorCode, message));
+                        : makeErrorResponse(errorCode, message, null));
+    }
+
+    public ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode, List<ErrorResponse.ValidError> errors) {
+        return ResponseEntity.status(errorCode.getHttpStatus())
+                .body(errors == null ?
+                        makeErrorResponse(errorCode)
+                        : makeErrorResponse(errorCode, errors));
     }
 
     private ErrorResponse makeErrorResponse(ErrorCode errorCode) {
-        return makeErrorResponse(errorCode, errorCode.getMessage());
+        return makeErrorResponse(errorCode, errorCode.getMessage(), null);
     }
 
-    private ErrorResponse makeErrorResponse(ErrorCode errorCode, String message) {
+    private ErrorResponse makeErrorResponse(ErrorCode errorCode, String message, List<ErrorResponse.ValidError> errors) {
         return ErrorResponse.builder()
                 .code(errorCode.name())
                 .message(message)
+                .validErrorList(errors)
                 .build();
+    }
+
+    private ErrorResponse makeErrorResponse(ErrorCode errorCode, List<ErrorResponse.ValidError> errors) {
+        return makeErrorResponse(errorCode, errorCode.getMessage(), errors);
     }
 }
